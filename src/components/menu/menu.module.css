@@ -1,0 +1,30 @@
+.container {
+      position: fixed;
+      top: 0.5rem;
+      right: 1.5em;
+      z-index: 1;
+}
+
+.threeDots {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+}
+
+.dropdownMenu {
+      display: none;
+      position: absolute;
+      z-index: 1;
+}
+
+.container:hover .dropdownMenu {
+      display: block;
+      width: 30px;
+      height: 30px;
+}
+
+.linkIcon {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+}
