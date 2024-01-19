@@ -1,17 +1,9 @@
-"use client";
 import Links from "./links/Links";
 
 const NavBar = () => {
   return (
-    <div>
+    <div style={{ position: "sticky" }}>
       <Links />
-      <style jsx>
-        {`
-          div {
-            position: sticky;
-          }
-        `}
-      </style>
     </div>
   );
 };

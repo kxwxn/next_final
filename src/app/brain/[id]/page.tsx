@@ -1,5 +1,9 @@
+import { useRouter } from "next/router";
 
+const BrainDetail = () => {
+  const router = useRouter();
 
-export default function page() {
-  return <div>page id</div>;
-}
+  return <div>BrainDetail</div>;
+};
+
+export default BrainDetail;

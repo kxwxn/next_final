@@ -1,0 +1,38 @@
+.container {
+      display: flex;
+      flex-direction: column;
+}
+
+.container a {
+      margin: 15px;
+}
+
+.faceSegment {
+      font-weight: bolder;
+      font-size: large;
+}
+
+.bodySegment {
+      font-weight: bolder;
+      font-size: large;
+}
+
+.brainSegment {
+      font-weight: bolder;
+      font-size: large;
+}
+
+.earSegment {
+      font-weight: bolder;
+      font-size: large;
+}
+
+.eyeSegment {
+      font-weight: bolder;
+      font-size: large;
+}
+
+.soulSegment {
+      font-weight: bolder;
+      font-size: large;
+}
