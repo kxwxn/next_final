@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import styles from "./signinform.module.css";
 import { useState } from "react";
 
@@ -6,8 +7,13 @@ const SignInForm = () => {
   const [id, setId] = useState();
   const [password, setPassword] = useState();
   const [message, setMessage] = useState();
+
+  const router = useRouter();
+
   const onSubmit = () => {};
-  const onClickClose = () => {};
+  const onClickClose = () => {
+    router.back();
+  };
 
   const onChangeId = () => {};
 
@@ -17,7 +23,11 @@ const SignInForm = () => {
     <div className={styles.modalBackground}>
       <div className={styles.modal}>
         <div className={styles.modalHeader}>
-          <button className={styles.closeButton} onClick={onClickClose} aria-label="Close">
+          <button
+            className={styles.closeButton}
+            onClick={onClickClose}
+            aria-label="Close"
+          >
             <svg
               width={24}
               viewBox="0 0 24 24"
@@ -29,13 +39,13 @@ const SignInForm = () => {
               </g>
             </svg>
           </button>
-          <div>로그인하세요.</div>
+          <div>please sign in</div>
         </div>
         <form onSubmit={onSubmit}>
           <div className={styles.modalBody}>
             <div className={styles.inputDiv}>
               <label className={styles.inputLabel} htmlFor="id">
-                아이디
+                email
               </label>
               <input
                 id="id"
@@ -48,7 +58,7 @@ const SignInForm = () => {
             </div>
             <div className={styles.inputDiv}>
               <label className={styles.inputLabel} htmlFor="password">
-                비밀번호
+                password
               </label>
               <input
                 id="password"
@@ -63,7 +73,7 @@ const SignInForm = () => {
           <div className={styles.message}>{message}</div>
           <div className={styles.modalFooter}>
             <button className={styles.actionButton} disabled={!id && !password}>
-              로그인하기
+              sign in
             </button>
           </div>
         </form>
