@@ -7,6 +7,7 @@ import Menu from "@/components/menu/page";
 import { ReactNode } from "react";
 import styles from "./layout.module.css";
 import { MSWComponent } from "@/app/_component/MSWComponent";
+import AuthSession from "./_component/AuthSession";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,8 +32,10 @@ export default function RootLayout({ children, modal }: Props) {
           <Menu />
           <NavBar />
           <div className={styles.content}>
-            {children}
-            {modal}
+            <AuthSession>
+              {children}
+              {modal}
+            </AuthSession>
           </div>
         </div>
       </body>
