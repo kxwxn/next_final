@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import styles from "./signinform.module.css";
 import { useState } from "react";
+import Link from "next/link";
 
 const SignInForm = () => {
   const [id, setId] = useState();
@@ -75,6 +76,8 @@ const SignInForm = () => {
             <button className={styles.actionButton} disabled={!id && !password}>
               sign in
             </button>
+           <div> or you can sign up
+            <Link href="/signup"> here</Link></div>
           </div>
         </form>
       </div>

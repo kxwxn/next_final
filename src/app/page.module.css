@@ -1,3 +1,18 @@
-.main{
+.container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width:100dvw;
+      height: 100dvh;
+}
 
+.webcam {
+      /* visibility: hidden; */
+      width: 0;
+      height: 0;
+}
+
+.canvas {
+      width: 100%;
+      cursor: pointer;
 }
