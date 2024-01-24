@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import Image from "next/image";
 import styles from "./eye.module.css";
 import { handleClick } from "./onClick";
 
@@ -60,3 +60,5 @@ const Eye = () => {
 };
 
 export default Eye;
+
+// Image 최적화.

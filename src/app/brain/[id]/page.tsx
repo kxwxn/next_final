@@ -1,8 +1,4 @@
-import { useRouter } from "next/router";
-
-const BrainDetail = () => {
-  const router = useRouter();
-
+const BrainDetail = async () => {
   return <div>BrainDetail</div>;
 };
 

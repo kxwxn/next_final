@@ -1,49 +1,24 @@
-"use client";
-import React, { useState } from "react";
-import MDEditor from "@uiw/react-md-editor";
+// import MDEditor from "@uiw/react-md-editor";
+import { connectDB } from "@/util/db";
 import styles from "./ArchivingForm.module.css";
-import { useRouter } from "next/navigation";
 
 const ArchivingForm = () => {
-  const [title, setTitle] = useState<string>("");
-  const [content, setContent] = useState<string>("Thoughts...");
-  const [error, setError] = useState("");
-  const navigate = useRouter();
-
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    console.log("clicked");
-    if (!title || !content) {
-      setError("Please your use your brain and write yer thoughts down....");
-      return;
-    }
-
-    try {
-    } catch (err) {
-      console.log("Error:", err);
-    }
-  };
+  // async function handleSubmit(formData) {
+  //   "use server";
+  //   const db = (await connectDB).db("n0wlk");
+  //   db.collection('brainPost').insertOne({title:formData.get('title')})
+  // }
 
   return (
     <div className={styles.container}>
-      <form onSubmit={handleSubmit}>
+      <form action={"/api/brain/archiving"} method="POST">
         <textarea
+          name="title"
           className={styles.title}
-          value={title}
           placeholder="Title..."
-          onChange={(e) => {
-            setTitle(e.target.value);
-            console.log(title);
-          }}
         />
-        <MDEditor
-          value={content}
-          onChange={(value) => {
-            setContent(value || "");
-            console.log(value);
-          }}
-        />
-        {error && <div className={styles.error}>{error}</div>}
+        <textarea name="content" placeholder="Thoughts..." />
+        {/* <MDEditor name="content" />  */}
         <div className={styles.buttonsContianer}>
           <button type="button">Cancel</button>
           <button type="button">Save</button>

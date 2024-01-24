@@ -1,11 +1,12 @@
 import Link from "next/link";
 import styles from "./brain.module.css";
+import ThreeDCardForm from "@/components/ThreeDCardForm/page";
 
-const Brain = () => {
+const Brain = async () => {
   return (
     <div>
       <Link href="brain/archiving">archiving</Link>
-      <h1></h1>
+      <ThreeDCardForm />
     </div>
   );
 };

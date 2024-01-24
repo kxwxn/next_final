@@ -6,8 +6,6 @@ import NavBar from "@/components/navbar/Navbar";
 import Menu from "@/components/menu/page";
 import { ReactNode } from "react";
 import styles from "./layout.module.css";
-import { MSWComponent } from "@/app/_component/MSWComponent";
-import AuthSession from "./_component/AuthSession";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,14 +26,11 @@ export default function RootLayout({ children, modal }: Props) {
     <html lang="en" className={bebas_neue.className}>
       <body className={styles.body}>
         <div className={styles.container}>
-          <MSWComponent />
           <Menu />
           <NavBar />
           <div className={styles.content}>
-            <AuthSession>
-              {children}
-              {modal}
-            </AuthSession>
+            {children}
+            {modal}
           </div>
         </div>
       </body>
