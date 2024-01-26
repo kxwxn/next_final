@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import styles from "./signinform.module.css";
 import { useState } from "react";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 const SignInForm = () => {
   const [id, setId] = useState();
@@ -71,15 +72,20 @@ const SignInForm = () => {
               />
             </div>
           </div>
+
           <div className={styles.message}>{message}</div>
           <div className={styles.modalFooter}>
             <button className={styles.actionButton} disabled={!id && !password}>
               sign in
             </button>
-           <div> or you can sign up
-            <Link href="/signup"> here</Link></div>
+            <div>
+              {" "}
+              or you can sign up
+              <Link href="/signup"> here</Link>
+            </div>
           </div>
         </form>
+        <button onClick={() => signIn("github")}>sign in with github</button>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./menu.module.css";
+import ClerkUserBtn from "../ClerkUserBtn/ClerkUserBtn";
 
 const Menu = () => {
   return (
@@ -61,13 +62,7 @@ const Menu = () => {
             alt=""
           />
         </Link>
-        <Link rel="noopener noreferrer" href="/signin">
-          <img
-            className={styles.linkIcon}
-            src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2FPNG%2Flog-in.png?alt=media&token=c06ef8c4-499a-491c-8e3c-a1fef0df6ab5"
-            alt=""
-          />
-        </Link>
+        <ClerkUserBtn />
       </div>
     </div>
   );

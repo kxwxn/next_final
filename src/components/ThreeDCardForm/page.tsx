@@ -1,4 +1,4 @@
-import { connectDB } from "@/util/db";
+import { connectDB } from "@/db/connectDB";
 import Link from "next/link";
 
 const ThreeDCardForm = async () => {

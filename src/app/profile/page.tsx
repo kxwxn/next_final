@@ -1,9 +1,11 @@
-
+import ClerkUserBtn from "@/components/ClerkUserBtn/ClerkUserBtn";
 
 const Profile = () => {
   return (
-    <div>Profile</div>
-  )
-}
+    <div>
+      <ClerkUserBtn />
+    </div>
+  );
+};
 
-export default Profile
+export default Profile;

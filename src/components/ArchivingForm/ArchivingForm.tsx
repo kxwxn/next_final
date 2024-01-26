@@ -1,5 +1,5 @@
 // import MDEditor from "@uiw/react-md-editor";
-import { connectDB } from "@/util/db";
+// import { connectDB } from "@/util/db";
 import styles from "./ArchivingForm.module.css";
 
 const ArchivingForm = () => {
@@ -16,8 +16,9 @@ const ArchivingForm = () => {
           name="title"
           className={styles.title}
           placeholder="Title..."
+          required
         />
-        <textarea name="content" placeholder="Thoughts..." />
+        <textarea name="content" placeholder="Thoughts..." required />
         {/* <MDEditor name="content" />  */}
         <div className={styles.buttonsContianer}>
           <button type="button">Cancel</button>

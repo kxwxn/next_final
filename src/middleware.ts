@@ -1,5 +1,7 @@
-export { auth as middleware } from "./auth";
+import { authMiddleware } from "@clerk/nextjs";
+
+export default authMiddleware({ publicRoutes: ["/"] });
 
 export const config = {
-  matcher: ["/ear", "/profile", "/signin", "/signup"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
