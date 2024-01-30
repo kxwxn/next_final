@@ -7,7 +7,7 @@ import Menu from "@/components/menu/page";
 import { ReactNode } from "react";
 import styles from "./layout.module.css";
 import SessionWrapper from "@/components/SessionWrapper/SessionWrapper";
-import {ClerkProvider} from '@clerk/nextjs'
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,18 +27,18 @@ export default function RootLayout({ children, modal }: Props) {
   return (
     <SessionWrapper>
       <ClerkProvider>
-      <html lang="en" className={bebas_neue.className}>
-        <body className={styles.body}>
-          <div className={styles.container}>
-            <Menu />
-            <NavBar />
-            <div className={styles.content}>
-              {children}
-              {modal}
+        <html lang="en" className={bebas_neue.className}>
+          <body className={styles.body}>
+            <div className={styles.container}>
+              <Menu />
+              <NavBar />
+              <div className={styles.content}>
+                {children}
+                {modal}
+              </div>
             </div>
-          </div>
-        </body>
-      </html>
+          </body>
+        </html>
       </ClerkProvider>
     </SessionWrapper>
   );

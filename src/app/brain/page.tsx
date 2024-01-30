@@ -3,12 +3,12 @@ import styles from "./brain.module.css";
 import ThreeDCardForm from "@/components/ThreeDCardForm/page";
 
 const Brain = async () => {
-  return (
-    <div>
-      <Link href="brain/archiving">archiving</Link>
-      <ThreeDCardForm />
-    </div>
-  );
+    return (
+        <div>
+            <Link href="brain/archiving" className={styles.link}>archiving</Link>
+            <ThreeDCardForm/>
+        </div>
+    );
 };
 
 export default Brain;

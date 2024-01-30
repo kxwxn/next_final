@@ -1,6 +1,19 @@
-.container{
-
+.container {
+  display: flex;
+  flex-direction: column;
 }
-.title{
-      
+
+.title {
+  width: 100vw;
+  outline: none;
+  resize: none;
+  border: none;
+}
+
+.content {
+  width: 100vw;
+  height: 70vh;
+  outline: none;
+  resize: none;
+  border: none;
 }

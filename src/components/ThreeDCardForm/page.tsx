@@ -1,5 +1,6 @@
 import { connectDB } from "@/db/connectDB";
 import Link from "next/link";
+import styles from './ThreeDCardForm.module.css'
 
 const ThreeDCardForm = async () => {
   const db = (await connectDB).db("n0wlk");
@@ -7,7 +8,7 @@ const ThreeDCardForm = async () => {
 
   const cardRendering = result.map((item, index: number) => (
     <div key={index}>
-      <Link href={"/brain/" + item._id}>{item.title}</Link>
+      <Link href={"/brain/" + item._id} className={styles.link}>{item.title}</Link>
     </div>
   ));
   return <div>{cardRendering}</div>;

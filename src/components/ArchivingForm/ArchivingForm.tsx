@@ -1,5 +1,4 @@
-// import MDEditor from "@uiw/react-md-editor";
-// import { connectDB } from "@/util/db";
+// import {connectDB} from "@/db/connnectDB"
 import styles from "./ArchivingForm.module.css";
 
 const ArchivingForm = () => {
@@ -8,18 +7,26 @@ const ArchivingForm = () => {
   //   const db = (await connectDB).db("n0wlk");
   //   db.collection('brainPost').insertOne({title:formData.get('title')})
   // }
-
   return (
-    <div className={styles.container}>
-      <form action={"/api/brain/archiving"} method="POST">
+    <div>
+      <span>user info?</span>
+      <form
+        action={"/api/brain/archiving"}
+        method="POST"
+        className={styles.container}
+      >
         <textarea
           name="title"
           className={styles.title}
           placeholder="Title..."
           required
         />
-        <textarea name="content" placeholder="Thoughts..." required />
-        {/* <MDEditor name="content" />  */}
+        <textarea
+          name="content"
+          placeholder="Thoughts..."
+          className={styles.content}
+          required
+        />
         <div className={styles.buttonsContianer}>
           <button type="button">Cancel</button>
           <button type="button">Save</button>
