@@ -1,17 +1,23 @@
-import { connectDB } from "@/db/connectDB";
 import Link from "next/link";
-import styles from './ThreeDCardForm.module.css'
+import styles from "./ThreeDCardForm.module.css";
+import ThreeJSBrainCard from "@/components/ThreeJS/ThreeJSBrainCard";
 
-const ThreeDCardForm = async () => {
-  const db = (await connectDB).db("n0wlk");
-  let result = await db.collection("brainPost").find().toArray();
+export default function ThreeDCardForm(props) {
+  const BrainData = props.result;
 
-  const cardRendering = result.map((item, index: number) => (
-    <div key={index}>
-      <Link href={"/brain/" + item._id} className={styles.link}>{item.title}</Link>
+  const cardRendering = BrainData.map((item, index: number) => (
+    <div key={index} className={styles.frame}>
+      <ThreeJSBrainCard
+        item={item}
+        uri={"/brain/" + item._id}
+        title={item.title}
+        className={styles.card}
+      />
     </div>
   ));
-  return <div>{cardRendering}</div>;
-};
 
-export default ThreeDCardForm;
+  return <div className={styles.container}>{cardRendering}</div>;
+}
+
+// 부모 컴포넌트인 Brain에서 props로 데이터를 받는다.
+// 그 받은 데이터를 클라이언트 컴포넌트인 ThreeJSBrainCard 컴포넌트로 넘겨줘서 사용할수 있게 한다.

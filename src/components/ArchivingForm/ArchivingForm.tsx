@@ -2,18 +2,17 @@
 import styles from "./ArchivingForm.module.css";
 
 const ArchivingForm = () => {
-  // async function handleSubmit(formData) {
-  //   "use server";
-  //   const db = (await connectDB).db("n0wlk");
-  //   db.collection('brainPost').insertOne({title:formData.get('title')})
-  // }
+  //   async function handleSubmit(formData) {
+  //     "use server";
+  //     const db = (await connectDB).db("n0wlk");
+  //     db.collection('brainPost').insertOne({title:formData.get('title')})
+  //   }
   return (
-    <div>
-      <span>user info?</span>
+    <div className={styles.container}>
       <form
         action={"/api/brain/archiving"}
         method="POST"
-        className={styles.container}
+        className={styles.formContainer}
       >
         <textarea
           name="title"
@@ -28,9 +27,18 @@ const ArchivingForm = () => {
           required
         />
         <div className={styles.buttonsContianer}>
-          <button type="button">Cancel</button>
-          <button type="button">Save</button>
-          <button type="submit">Archive</button>
+          <button className={styles.btnDelete} type="button">
+            <span>Click!</span>
+            <span>Delete</span>
+          </button>
+          <button className={styles.btnDraft} type="button">
+            <span>Click!</span>
+            <span>Draft</span>
+          </button>
+          <button className={styles.btnArchive} type="submit">
+            <span>Click!</span>
+            <span>Archive</span>
+          </button>
         </div>
       </form>
     </div>

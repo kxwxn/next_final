@@ -1,0 +1,7 @@
+.container {
+  display: flex;
+}
+.content {
+  position: fixed;
+  top: 3em;
+}

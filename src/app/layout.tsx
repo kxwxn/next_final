@@ -8,7 +8,6 @@ import { ReactNode } from "react";
 import styles from "./layout.module.css";
 import SessionWrapper from "@/components/SessionWrapper/SessionWrapper";
 import { ClerkProvider } from "@clerk/nextjs";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

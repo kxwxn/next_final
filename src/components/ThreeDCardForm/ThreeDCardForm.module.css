@@ -1,3 +1,23 @@
-.link:hover{
-    text-decoration: underline;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 100%;
+}
+
+.frame {
+  padding-top: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  align-items: center;
+}
+
+.card {
+  width: 60%;
+  height: auto;
+  padding: 15px;
+  cursor: pointer;
 }

@@ -1,17 +1,18 @@
-import Link from "next/link";
 import styles from "./brain.module.css";
 import ThreeDCardForm from "@/components/ThreeDCardForm/page";
+import { connectDB } from "@/db/connectDB";
+import ArchivingBtn from "@/components/ArchivingBtn/ArchivingBtn";
 
-const Brain = async () => {
-    return (
-        <div>
-            <Link href="brain/archiving" className={styles.link}>archiving</Link>
-            <ThreeDCardForm/>
-        </div>
-    );
-};
+export default async function Brain() {
+  const db = (await connectDB).db("n0wlk");
+  const result = await db.collection("brainPost").find().toArray();
 
-export default Brain;
+  return (
+    <div className={styles.container}>
+      <ThreeDCardForm result={result} />
+    </div>
+  );
+}
 
 // 여기서 db에 있는 블로그를 보여준다.
 // 1. 랜딩페이지는 3Dcard를 이용하여 보여준다. 제목과 블로그의 첫번째줄.
