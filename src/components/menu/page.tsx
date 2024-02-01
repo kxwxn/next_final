@@ -11,7 +11,7 @@ const Menu = () => {
         alt=""
       />
       <div className={styles.dropdownMenu}>
-        <Link rel="noopener noreferrer" href="profile">
+        <Link rel="noopener noreferrer" href="/profile">
           <img
             className={styles.linkIcon}
             src="https://firebasestorage.googleapis.com/v0/b/portfolio-e296e.appspot.com/o/logo%2FPNG%2Faccount.png?alt=media&token=2c97de21-f407-4850-b7fa-422a81f3ba4b"

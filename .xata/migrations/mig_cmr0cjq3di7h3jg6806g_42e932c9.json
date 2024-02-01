@@ -1,0 +1,12 @@
+{
+  "id": "mig_cmr0cjq3di7h3jg6806g",
+  "parentID": "mig_cmr00oi3di7h3jg68020",
+  "checksum": "1:42e932c907517743d974ca56556e9212eba7a92e1e288f65ca7302d443acc987",
+  "operations": [
+    {
+      "addTable": {
+        "table": "brain"
+      }
+    }
+  ]
+}

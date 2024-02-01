@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmr0cps7vdj5k5o4r4sg",
+  "parentID": "mig_cmr0cjq3di7h3jg6806g",
+  "checksum": "1:3841423ab0a51035652a596e08215c836742ba190677e0dd8251ca52a22dc6e2",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "username",
+          "type": "string"
+        },
+        "table": "brain"
+      }
+    }
+  ]
+}

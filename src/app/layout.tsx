@@ -6,7 +6,6 @@ import NavBar from "@/components/navbar/Navbar";
 import Menu from "@/components/menu/page";
 import { ReactNode } from "react";
 import styles from "./layout.module.css";
-import SessionWrapper from "@/components/SessionWrapper/SessionWrapper";
 import { ClerkProvider } from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,21 +23,19 @@ type Props = { children: ReactNode; modal: ReactNode };
 
 export default function RootLayout({ children, modal }: Props) {
   return (
-    <SessionWrapper>
-      <ClerkProvider>
-        <html lang="en" className={bebas_neue.className}>
-          <body className={styles.body}>
-            <div className={styles.container}>
-              <Menu />
-              <NavBar />
-              <div className={styles.content}>
-                {children}
-                {modal}
-              </div>
+    <ClerkProvider>
+      <html lang="en" className={bebas_neue.className}>
+        <body className={styles.body}>
+          <div className={styles.container}>
+            <Menu />
+            <NavBar />
+            <div className={styles.content}>
+              {children}
+              {modal}
             </div>
-          </body>
-        </html>
-      </ClerkProvider>
-    </SessionWrapper>
+          </div>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

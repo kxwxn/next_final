@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://kxwxn-s-workspace-pf3r84.us-east-1.xata.sh/db/authDB",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}

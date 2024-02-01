@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmr0cvi3di7h3jg6807g",
+  "parentID": "mig_cmr0cs47vdj5k5o4r4tg",
+  "checksum": "1:bc5a84b9effa631291d0e52c09d36719abaeeb9f16999c257fbfd50260c9b904",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "content",
+          "type": "text"
+        },
+        "table": "brain"
+      }
+    }
+  ]
+}

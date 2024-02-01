@@ -1,0 +1,14 @@
+{
+  "id": "mig_cmr0cs47vdj5k5o4r4tg",
+  "parentID": "mig_cmr0cps7vdj5k5o4r4sg",
+  "checksum": "1:9f43778368b7c7f3f93ba54ff203c80c9e76cfecaa3d85005e7338ce5bfbe40a",
+  "operations": [
+    {
+      "renameColumn": {
+        "newName": "name",
+        "oldName": "username",
+        "table": "brain"
+      }
+    }
+  ]
+}

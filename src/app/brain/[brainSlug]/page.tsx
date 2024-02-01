@@ -2,6 +2,9 @@ import { connectDB } from "@/db/connectDB";
 import { ObjectId } from "bson";
 import styles from "./BrainSlug.module.css";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import Link from "next/link";
+import { auth } from "@clerk/nextjs";
+import SlugDeleteBtn from "@/components/SlugDeleteBtn/SlugDeleteBtn";
 
 export default async function BrainSlug({ params }) {
   const slugId = params.brainSlug;
@@ -9,12 +12,21 @@ export default async function BrainSlug({ params }) {
   const slug = await db
     .collection("brainPost")
     .findOne({ _id: new ObjectId(slugId) });
+  const { userId: authId } = auth();
+  const userInfo = slug.author;
 
+  console.log("authId", authId, "userInfo", userInfo);
   return (
     <div className={styles.container}>
+      <SlugDeleteBtn params={params} />
+      <Link href={"/brain"} className={styles.btnArchive}>
+        <span>Click!</span>
+        <span>Archive</span>
+      </Link>
       <h1 className={styles.title}>{slug.title}</h1>
-      <MDXRemote source={slug.content} />
-      {/*<pre className={styles.content}>{slug.content}</pre>*/}
+      <div className={styles.slugContent}>
+        <MDXRemote source={slug.content} />
+      </div>
     </div>
   );
 }

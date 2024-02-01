@@ -1,11 +1,12 @@
-import ClerkUserBtn from "@/components/ClerkUserBtn/ClerkUserBtn";
+import { UserProfile, auth } from "@clerk/nextjs";
 
-const Profile = () => {
+export default function Profile() {
+  const { userId } = auth();
+  console.log("userId", userId);
+
   return (
     <div>
-      <ClerkUserBtn />
+      <UserProfile path="/" />
     </div>
   );
-};
-
-export default Profile;
+}

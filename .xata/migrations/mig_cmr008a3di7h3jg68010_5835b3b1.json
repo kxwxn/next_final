@@ -1,0 +1,13 @@
+{
+  "id": "mig_cmr008a3di7h3jg68010",
+  "parentID": "mig_cmr000s7vdj5k5o4r4p0",
+  "checksum": "1:5835b3b12a426d14f67c9f9dc8e043f04fe43f17e0cf29c8781a228980be4177",
+  "operations": [
+    {
+      "renameTable": {
+        "newName": "folders",
+        "oldName": "folder"
+      }
+    }
+  ]
+}
