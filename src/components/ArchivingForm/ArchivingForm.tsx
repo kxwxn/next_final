@@ -37,7 +37,7 @@ export default function ArchivingForm() {
           </button>
           <button className={styles.btnArchive} type="submit">
             <span>Click!</span>
-            <span>Archive</span>
+            <span>Save</span>
           </button>
         </div>
       </form>

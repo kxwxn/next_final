@@ -1,5 +1,7 @@
 .container {
   justify-content: center;
+  padding-top: 4rem;
+  padding-left: 4rem;
 }
 .formContainer {
   display: flex;
