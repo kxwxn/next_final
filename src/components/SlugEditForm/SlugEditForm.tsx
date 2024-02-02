@@ -1,11 +1,11 @@
-import styles from "./ArchivingForm.module.css";
+import styles from "./SlugEditForm.module.css";
 import { connectDB } from "@/db/connectDB";
 import { auth } from "@clerk/nextjs";
 import { Timestamp } from "mongodb";
 import { ObjectId } from "bson";
 import { redirect } from "next/navigation";
-
-export default function ArchivingForm() {
+export default function SlugEditForm(params) {
+  console.log(params);
   async function handleDraft(formData) {
     "use server";
     const { userId } = auth();
@@ -73,11 +73,5 @@ export default function ArchivingForm() {
   );
 }
 
-// Draft 버튼을 구현 후 Delete 버튼을 구현한다.
-
-// Draft는 기본적으로 유저마다 하나씩만 가질수 있다.
-// 글이 save로 인해 발행이 된다면, Draft도 삭제해야 한다.
-
-// Draft 와 Delete 버튼들의 작동후 사용자에게 알림을 표시해야한다. CSS
-// Delete는 redirect로 사용자가 변화를 감지하는 경험을 하게 했다.
-// Draft는
+// dynamic route 에 맞는 데이터를 가져온다.
+// 가져온 데이터를 textarea 에 보여준다.

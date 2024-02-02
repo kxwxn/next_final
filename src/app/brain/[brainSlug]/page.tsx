@@ -5,6 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { auth } from "@clerk/nextjs";
 import SlugDeleteBtn from "@/components/SlugDeleteBtn/SlugDeleteBtn";
+import SlugEditBtn from "@/components/SlugEditBtn/SlugEditBtn";
 
 export default async function BrainSlug({ params }) {
   const slugId = params.brainSlug;
@@ -18,7 +19,12 @@ export default async function BrainSlug({ params }) {
   console.log("authId", authId, "userInfo", userInfo);
   return (
     <div className={styles.container}>
-      <SlugDeleteBtn params={params} />
+      {authId === userInfo && (
+        <div>
+          <SlugEditBtn params={params} />
+          <SlugDeleteBtn params={params} />
+        </div>
+      )}
       <Link href={"/brain"} className={styles.btnArchive}>
         <span>Click!</span>
         <span>Archive</span>
