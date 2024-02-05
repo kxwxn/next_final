@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs";
 import { Timestamp } from "mongodb";
 import { ObjectId } from "bson";
 import { redirect } from "next/navigation";
+import ArchivingBtnSet from "@/components/ArchivingBtnSet/ArchivingBtnSet";
 
 export default function ArchivingForm() {
   async function handleDraft(formData) {
@@ -33,6 +34,10 @@ export default function ArchivingForm() {
     db.collection("brainDraft").deleteOne({ author: userId });
     redirect("/brain");
   }
+  const collection = {
+    collectionName: "brainDraft",
+    redirectUrl: "brain",
+  };
 
   return (
     <div className={styles.container}>
@@ -53,21 +58,7 @@ export default function ArchivingForm() {
           className={styles.content}
           required
         />
-        <div className={styles.buttonsContianer}>
-          <button className={styles.btnDelete} formAction={handleDelete}>
-            <span>Click!</span>
-            <span>Delete</span>
-          </button>
-          <button className={styles.btnDraft} formAction={handleDraft}>
-            <span>Saved!</span>
-            <span>Click!</span>
-            <span>Save as Draft</span>
-          </button>
-          <button className={styles.btnArchive} type="submit">
-            <span>Click!</span>
-            <span>Publish</span>
-          </button>
-        </div>
+        <ArchivingBtnSet {...collection} />
       </form>
     </div>
   );

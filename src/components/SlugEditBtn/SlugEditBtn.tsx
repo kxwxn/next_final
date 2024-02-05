@@ -1,12 +1,15 @@
 import styles from "./SlugEditBtn.module.css";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function SlugEditBtn({ params }) {
-  console.log(params);
+  const { brainSlug } = params;
   return (
     <>
-      <Link href={`/brain/${params.brainSlug}/edit`} className={styles.btnEdit}>
+      <Link
+        href={`/brain/${brainSlug}/edit`}
+        className={styles.btnEdit}
+        passHref={true}
+      >
         <span>Click!</span>
         <span>Edit</span>
       </Link>
@@ -14,4 +17,5 @@ export default function SlugEditBtn({ params }) {
   );
 }
 
+// useParams 를 이용하여 dynamic route의 url 을 가져온다.
 // Dynamic Route 를 Link태그를 이용해 라우팅하는법.

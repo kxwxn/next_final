@@ -1,10 +1,10 @@
+import styles from "./earLayout.module.css";
 import ArchivingBtn from "@/components/ArchivingBtn/ArchivingBtn";
-import styles from "./brainLayout.module.css";
 
 export default function layout({ children }: { children: React.ReactNode }) {
   return (
     <div className={styles.container}>
-      <ArchivingBtn prop="brain" />
+      <ArchivingBtn prop="ear" />
       <div className={styles.content}>{children}</div>
     </div>
   );

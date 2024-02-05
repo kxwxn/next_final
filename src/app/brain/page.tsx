@@ -5,7 +5,11 @@ import ArchivingBtn from "@/components/ArchivingBtn/ArchivingBtn";
 
 export default async function Brain() {
   const db = (await connectDB).db("n0wlk");
-  const result = await db.collection("brainPost").find().toArray();
+  const result = await db
+    .collection("brainPost")
+    .find()
+    .sort({ _id: -1 })
+    .toArray();
 
   return (
     <div className={styles.container}>

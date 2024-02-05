@@ -1,0 +1,10 @@
+.container {
+  padding-top: 2rem;
+  padding-left: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+}
+.frame {
+  padding: 3rem;
+}

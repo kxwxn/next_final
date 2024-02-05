@@ -16,7 +16,6 @@ export default async function BrainSlug({ params }) {
   const { userId: authId } = auth();
   const userInfo = slug.author;
 
-  console.log("authId", authId, "userInfo", userInfo);
   return (
     <div className={styles.container}>
       {authId === userInfo && (

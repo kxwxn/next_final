@@ -1,9 +1,12 @@
-
+import styles from "./ear.module.css";
+import SpotifyCardForm from "@/components/SpotifyCardForm/SpotifyCardForm";
 
 const Ear = () => {
   return (
-    <div>Ear</div>
-  )
-}
+    <div className={styles.container}>
+      <SpotifyCardForm />
+    </div>
+  );
+};
 
-export default Ear
+export default Ear;

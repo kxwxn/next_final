@@ -1,38 +1,18 @@
 import styles from "./SlugEditForm.module.css";
 import { connectDB } from "@/db/connectDB";
-import { auth } from "@clerk/nextjs";
-import { Timestamp } from "mongodb";
 import { ObjectId } from "bson";
-import { redirect } from "next/navigation";
-export default function SlugEditForm(params) {
-  console.log(params);
-  async function handleDraft(formData) {
-    "use server";
-    const { userId } = auth();
-    const db = (await connectDB).db("n0wlk");
-    db.collection("brainDraft").updateOne(
-      { author: userId },
+import ArchivingBtnSet from "@/components/ArchivingBtnSet/ArchivingBtnSet";
+export default async function SlugEditForm(params) {
+  const slugId = params.brainSlug;
+  const db = (await connectDB).db("n0wlk");
+  const slug = await db
+    .collection("brainPost")
+    .findOne({ _id: new ObjectId(slugId) });
 
-      {
-        $set: {
-          title: formData.get("title"),
-          content: formData.get("content"),
-          author: userId,
-          createdAt: new Timestamp(),
-        },
-      },
-
-      { upsert: true },
-    );
-  }
-
-  async function handleDelete(formData) {
-    "use server";
-    const { userId } = auth();
-    const db = (await connectDB).db("n0wlk");
-    db.collection("brainDraft").deleteOne({ author: userId });
-    redirect("/brain");
-  }
+  const collection = {
+    collectionName: "brainDraft",
+    redirectUrl: "brain",
+  };
 
   return (
     <div className={styles.container}>
@@ -46,28 +26,16 @@ export default function SlugEditForm(params) {
           className={styles.title}
           placeholder="Title..."
           required
+          defaultValue={slug.title}
         />
         <textarea
           name="content"
           placeholder="Thoughts..."
           className={styles.content}
           required
+          defaultValue={slug.content}
         />
-        <div className={styles.buttonsContianer}>
-          <button className={styles.btnDelete} formAction={handleDelete}>
-            <span>Click!</span>
-            <span>Delete</span>
-          </button>
-          <button className={styles.btnDraft} formAction={handleDraft}>
-            <span>Saved!</span>
-            <span>Click!</span>
-            <span>Save as Draft</span>
-          </button>
-          <button className={styles.btnArchive} type="submit">
-            <span>Click!</span>
-            <span>Publish</span>
-          </button>
-        </div>
+        <ArchivingBtnSet {...collection} />
       </form>
     </div>
   );
