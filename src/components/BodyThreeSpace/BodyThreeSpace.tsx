@@ -1,21 +1,15 @@
 "use client";
-
-import styles from "./ThreeJSBrainCard.module.css";
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
-import Link from "next/link";
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
 import { FontLoader } from "three/addons/loaders/FontLoader.js";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { black } from "kleur/colors";
 
-export default function ThreeJSBrainCard({ uri, title }) {
+export default function BodyThreeSpace() {
   const ref = useRef();
   useEffect(() => {
     // RENDERER
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.shadowMap.enabled = true;
-    // renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setPixelRatio(window.devicePixelRatio);
     ref.current.appendChild(renderer.domElement);
 
     // SCENE
@@ -23,12 +17,12 @@ export default function ThreeJSBrainCard({ uri, title }) {
 
     // CAMERA
     const camera = new THREE.PerspectiveCamera(
-      75,
+      74,
       window.innerWidth / window.innerHeight,
       0.1,
-      10,
+      100,
     );
-    camera.position.z = 10;
+    camera.position.z = 2;
 
     // LIGHT
     const light = new THREE.DirectionalLight(0xffffff, 1);
@@ -39,10 +33,16 @@ export default function ThreeJSBrainCard({ uri, title }) {
     const loader = new FontLoader();
     loader.load("/Jost_Regular.json", (font) => {
       // GEOMETRY
-      const textGeo = new TextGeometry(title, {
+      const textGeo = new TextGeometry("SAMPLE", {
         font: font,
-        size: 3,
-        height: 1,
+        size: 0.3,
+        height: 0.2,
+        curveSegments: 12,
+        bevelEnabled: true,
+        bevelThickness: 0.03,
+        bevelSize: 0.03,
+        bevelOffset: 0.005,
+        bevelSegments: 24,
       });
 
       // ALIGN GRAVITY CENTRE === textGeo.center()
@@ -54,29 +54,31 @@ export default function ThreeJSBrainCard({ uri, title }) {
       textGeo.translate(-midX, 0, -midZ);
 
       // MATERIAL
-      const materialF = new THREE.MeshPhongMaterial({
-        color: "black",
-      });
-      const materialB = new THREE.MeshPhongMaterial({
-        color: "black",
+      const material = new THREE.MeshStandardMaterial({
+        color: "#689F38",
+        roughness: 0.3,
+        metalness: 0.7,
       });
 
       // CUBE ( COMPLETE OBJECT made of MESH )
-      const cube = new THREE.Mesh(textGeo, [materialF, materialB]);
+      const cube = new THREE.Mesh(textGeo, material);
       scene.add(cube);
-
-      // CONTROLS
-      const controls = new OrbitControls(camera, renderer.domElement);
 
       // ANIMATION
       const animate = () => {
         requestAnimationFrame(animate);
-        cube.rotation.y += 0.001;
+        cube.rotation.y += 0.01;
         renderer.render(scene, camera);
       };
 
       animate();
     });
+
+    // const geo = new THREE.BoxGeometry(1, 1, 1);
+    // const material = new THREE.MeshPhongMaterial({ color: 0x44a88 });
+
+    // const cube = new THREE.Mesh(geo, material);
+    // scene.add(cube);
 
     return () => {
       if (ref.current) {
@@ -85,5 +87,9 @@ export default function ThreeJSBrainCard({ uri, title }) {
     };
   }, []);
 
-  return <Link ref={ref} className={styles.link} href={uri} />;
+  return (
+    <div>
+      <div ref={ref}></div>
+    </div>
+  );
 }

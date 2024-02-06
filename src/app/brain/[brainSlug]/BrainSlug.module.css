@@ -7,6 +7,10 @@
 .title {
   text-align: center;
 }
+.date {
+  color: grey;
+  font-family: "Andale Mono";
+}
 
 .btnArchive {
   position: fixed;

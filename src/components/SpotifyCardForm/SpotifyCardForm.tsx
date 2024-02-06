@@ -1,24 +1,40 @@
 import styles from "./SpotifyCardForm.module.css";
 import { Spotify } from "react-spotify-embed";
 import { connectDB } from "@/db/connectDB";
-import Image from "next/image";
 import SpotifyBtnSet from "@/components/SpotifyBtnSet/SpotifyBtnSet";
-import { auth } from "@clerk/nextjs";
+import { auth, currentUser } from "@clerk/nextjs";
+import moment from "moment";
 
 export default async function SpotifyCardForm() {
+  const curUser = await currentUser();
   const user = auth().userId;
   const db = (await connectDB).db("n0wlk");
-  const result = await db.collection("ear").find().sort({ _id: -1 }).toArray();
+  let result = await db.collection("ear").find().sort({ _id: -1 }).toArray();
+  result = result.map((a) => {
+    a._id = a._id.toString();
+    return a;
+  });
 
   const DisplaySpotifyCards = result.map((item, index) => {
     const user = auth().userId;
     const match = user === item.author;
+    const timeStamp = new Date(item.createdAt.getHighBits() * 1000);
+    const relativeTime = moment(timeStamp).fromNow();
+    const time = timeStamp.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
 
     return (
       <div key={index} className={styles.frame}>
-        {match && <SpotifyBtnSet slugId={item._id} />}
         <Spotify link={item.spotifyUrl} />
-        <div>{item.content}</div>
+        <div className={styles.date}>
+          <div>{relativeTime}</div>
+          <div>{time}</div>
+        </div>
+        <div className={styles.content}>{item.content}</div>
+        {match && <SpotifyBtnSet slugId={item._id} />}
       </div>
     );
   });

@@ -1,0 +1,9 @@
+.delete {
+}
+.btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: right;
+  border: none;
+  background: none;
+}

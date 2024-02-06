@@ -8,7 +8,6 @@ export default function ThreeDCardForm(props) {
   const cardRendering = BrainData.map((item, index: number) => (
     <div key={index} className={styles.frame}>
       <ThreeJSBrainCard
-        item={item}
         uri={"/brain/" + item._id}
         title={item.title}
         className={styles.card}

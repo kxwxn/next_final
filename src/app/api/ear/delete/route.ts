@@ -1,14 +1,17 @@
 import { connectDB } from "@/db/connectDB";
-import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import { ObjectId } from "bson";
 
 export async function POST(request: Request) {
   let shouldRedirect = false;
+
   try {
     const formData = await request.formData();
-    const id = await request.formData("slugId");
+    const id = formData.get("slugId");
     const db = (await connectDB).db("n0wlk");
+    console.log("formData", formData, "id", id);
     db.collection("ear").deleteOne({
-      _id: id,
+      _id: new ObjectId(id),
     });
     shouldRedirect = true;
   } catch (err) {
@@ -16,6 +19,6 @@ export async function POST(request: Request) {
     return;
   }
   if (shouldRedirect) {
-    revalidatePath("/ear");
+    redirect("/ear");
   }
 }

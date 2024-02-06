@@ -1,7 +1,10 @@
 .container {
   display: flex;
-  flex-direction: column;
-  float: right;
+  padding: 0.3rem;
+}
+.link {
+  display: flex;
+  justify-content: flex-start;
 }
 .delete {
   cursor: pointer;

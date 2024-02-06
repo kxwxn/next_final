@@ -1,12 +1,10 @@
 "use client";
 import Image from "next/image";
-import styles from "@/components/SpotifyBtnSet/SpotifyBtnSet.module.css";
-import { earDelete } from "@/components/EarDeleteBtn/earDelete";
-
+import styles from "./EarDeleteBtn.module.css";
 export default function EarDeleteBtn({ slugId }) {
   const onSubmit = (event, formData: FormData) => {
     if (confirm("Are you sure?")) {
-      earDelete(formData);
+      return true;
     } else {
       event.preventDefault();
     }
@@ -20,7 +18,7 @@ export default function EarDeleteBtn({ slugId }) {
       className={styles.delete}
     >
       <input type="hidden" name="slugId" value={slugId} />
-      <button type="submit">
+      <button type="submit" className={styles.btn}>
         <Image
           src={process.env.DELETING_IMAGES || "/icons/deleting.png"}
           srcSet={

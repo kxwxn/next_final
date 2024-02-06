@@ -6,6 +6,7 @@ import Link from "next/link";
 import { auth } from "@clerk/nextjs";
 import SlugDeleteBtn from "@/components/SlugDeleteBtn/SlugDeleteBtn";
 import SlugEditBtn from "@/components/SlugEditBtn/SlugEditBtn";
+import moment from "moment";
 
 export default async function BrainSlug({ params }) {
   const slugId = params.brainSlug;
@@ -15,6 +16,13 @@ export default async function BrainSlug({ params }) {
     .findOne({ _id: new ObjectId(slugId) });
   const { userId: authId } = auth();
   const userInfo = slug.author;
+  const timeStamp = new Date(slug.createdAt.getHighBits() * 1000);
+  const relativeTime = moment(timeStamp).fromNow();
+  const time = timeStamp.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 
   return (
     <div className={styles.container}>
@@ -28,6 +36,10 @@ export default async function BrainSlug({ params }) {
         <span>Click!</span>
         <span>Archive</span>
       </Link>
+      <div className={styles.date}>
+        <div>{relativeTime}</div>
+        <div>{time}</div>
+      </div>
       <h1 className={styles.title}>{slug.title}</h1>
       <div className={styles.slugContent}>
         <MDXRemote source={slug.content} />

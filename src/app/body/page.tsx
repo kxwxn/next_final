@@ -1,9 +1,9 @@
+import BodyThreeSpace from "@/components/BodyThreeSpace/BodyThreeSpace";
 
-
-const Body = () => {
+export default function Body() {
   return (
-    <div>Body</div>
-  )
+    <div>
+      <BodyThreeSpace />
+    </div>
+  );
 }
-
-export default Body
