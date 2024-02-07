@@ -47,14 +47,8 @@ export default function BodyThreeSpace() {
     const listener = new THREE.AudioListener();
     camera.add(listener);
 
-    const audioElement = audioRef.current;
-    audioElement.play();
-
     // creating the POSITIONAL AUDIO OBJECT (passing in the listner)
     const positionalAudio = new THREE.PositionalAudio(listener);
-    positionalAudio.setMediaElementSource(audioElement);
-    positionalAudio.setRefDistance(1);
-    positionalAudio.setDirectionalCone(180, 230, 0.1);
 
     const helper = new PositionalAudioHelper(positionalAudio, 0.1);
     positionalAudio.add(helper);
