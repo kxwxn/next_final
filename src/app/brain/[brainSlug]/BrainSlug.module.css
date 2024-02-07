@@ -3,13 +3,22 @@
   width: 100%;
   overflow: scroll;
   align-items: center;
+  font-family: Helvetica;
+}
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
 }
 .title {
   text-align: center;
+  font-size: xxx-large;
 }
 .date {
   color: grey;
   font-family: "Andale Mono";
+  font-size: 0.6rem;
 }
 
 .btnArchive {

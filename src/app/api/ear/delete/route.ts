@@ -9,7 +9,6 @@ export async function POST(request: Request) {
     const formData = await request.formData();
     const id = formData.get("slugId");
     const db = (await connectDB).db("n0wlk");
-    console.log("formData", formData, "id", id);
     db.collection("ear").deleteOne({
       _id: new ObjectId(id),
     });

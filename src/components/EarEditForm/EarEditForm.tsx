@@ -19,12 +19,16 @@ export default async function EarEditForm(props) {
     try {
       const { userId } = auth();
       const db = (await connectDB).db("n0wlk");
-      db.collection("ear").insertOne({
-        author: userId,
-        spotifyUrl: formData.get("spotifyUrl"),
-        content: formData.get("content"),
-        createdAt: new Timestamp(),
-      });
+      db.collection("ear").updateOne(
+        { _id: new ObjectId(slugId) },
+        {
+          $set: {
+            author: userId,
+            spotifyUrl: formData.get("spotifyUrl"),
+            content: formData.get("content"),
+          },
+        },
+      );
       shouldRedirect = true;
     } catch (e) {
       console.error(e);

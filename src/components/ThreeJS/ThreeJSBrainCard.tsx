@@ -66,12 +66,12 @@ export default function ThreeJSBrainCard({ uri, title }) {
       scene.add(cube);
 
       // CONTROLS
-      const controls = new OrbitControls(camera, renderer.domElement);
+      // const controls = new OrbitControls(camera, renderer.domElement);
 
       // ANIMATION
       const animate = () => {
         requestAnimationFrame(animate);
-        cube.rotation.y += 0.001;
+        // cube.rotation.y += 0.001;
         renderer.render(scene, camera);
       };
 

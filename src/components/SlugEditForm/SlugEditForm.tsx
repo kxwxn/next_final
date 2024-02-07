@@ -2,6 +2,7 @@ import styles from "./SlugEditForm.module.css";
 import { connectDB } from "@/db/connectDB";
 import { ObjectId } from "bson";
 import ArchivingBtnSet from "@/components/ArchivingBtnSet/ArchivingBtnSet";
+import ModifyBtnSet from "@/components/ModifyBtnSet/ModifyBtnSet";
 export default async function SlugEditForm(params) {
   const slugId = params.brainSlug;
   const db = (await connectDB).db("n0wlk");
@@ -17,23 +18,24 @@ export default async function SlugEditForm(params) {
   return (
     <div className={styles.container}>
       <form
-        action={"/api/brain/archiving"}
+        action={"/api/brain/edit"}
         method="POST"
         className={styles.formContainer}
       >
+        <input type="hidden" value={slugId} name="editId" />
         <textarea
           name="title"
           className={styles.title}
           placeholder="Title..."
-          required
           defaultValue={slug.title}
+          required
         />
         <textarea
           name="content"
           placeholder="Thoughts..."
           className={styles.content}
-          required
           defaultValue={slug.content}
+          required
         />
         <ArchivingBtnSet {...collection} />
       </form>

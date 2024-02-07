@@ -7,6 +7,9 @@ import { auth } from "@clerk/nextjs";
 import SlugDeleteBtn from "@/components/SlugDeleteBtn/SlugDeleteBtn";
 import SlugEditBtn from "@/components/SlugEditBtn/SlugEditBtn";
 import moment from "moment";
+import rehypeHighlight from "rehype-highlight";
+import rehypeCodeTitles from "rehype-code-titles";
+import rehypePrismAll from "rehype-prism-plus";
 
 export default async function BrainSlug({ params }) {
   const slugId = params.brainSlug;
@@ -23,6 +26,11 @@ export default async function BrainSlug({ params }) {
     day: "numeric",
     year: "numeric",
   });
+  const options = {
+    mdxOptions: {
+      rehypePlugins: [rehypeCodeTitles, rehypePrismAll],
+    },
+  };
 
   return (
     <div className={styles.container}>
@@ -36,13 +44,16 @@ export default async function BrainSlug({ params }) {
         <span>Click!</span>
         <span>Archive</span>
       </Link>
-      <div className={styles.date}>
-        <div>{relativeTime}</div>
-        <div>{time}</div>
+
+      <div className={styles.titleContainer}>
+        <h1 className={styles.title}>{slug.title}</h1>
+        <div className={styles.date}>
+          <div>last modified {relativeTime}</div>
+          <div> {time}</div>
+        </div>
       </div>
-      <h1 className={styles.title}>{slug.title}</h1>
       <div className={styles.slugContent}>
-        <MDXRemote source={slug.content} />
+        <MDXRemote source={slug.content} options={options} />
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 import BodyThreeSpace from "@/components/BodyThreeSpace/BodyThreeSpace";
+import styles from "./body.module.css";
 
 export default function Body() {
   return (
-    <div>
+    <div className={styles.container}>
       <BodyThreeSpace />
     </div>
   );
