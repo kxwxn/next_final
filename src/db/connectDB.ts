@@ -2,7 +2,7 @@ import { MongoClient } from "mongodb";
 
 const url: string | undefined = process.env.MONGODB_URI as string;
 
-let connectDB: Promise<MongoClient>;
+export let connectDB: Promise<MongoClient>;
 
 declare global {
   interface Global {
@@ -19,4 +19,4 @@ if (process.env.NODE_ENV === "development") {
   connectDB = new MongoClient(url).connect();
 }
 
-export { connectDB };
+export default { connectDB };
