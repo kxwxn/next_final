@@ -1,6 +1,5 @@
 import { connectDB } from "@/db/connectDB";
 import { redirect } from "next/navigation";
-import { Timestamp } from "mongodb";
 import { auth } from "@clerk/nextjs";
 import { ObjectId } from "bson";
 

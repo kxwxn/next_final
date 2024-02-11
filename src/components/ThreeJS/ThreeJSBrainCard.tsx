@@ -6,8 +6,7 @@ import * as THREE from "three";
 import Link from "next/link";
 import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
 import { FontLoader } from "three/addons/loaders/FontLoader.js";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { black } from "kleur/colors";
+import { gsap } from "gsap";
 
 export default function ThreeJSBrainCard({ uri, title }) {
   const ref = useRef();
@@ -47,31 +46,44 @@ export default function ThreeJSBrainCard({ uri, title }) {
 
       // ALIGN GRAVITY CENTRE === textGeo.center()
       textGeo.computeBoundingBox();
-      const midX =
-        (textGeo.boundingBox.max.x - textGeo.boundingBox.min.x) / 2.0;
-      const midZ =
-        (textGeo.boundingBox.max.z - textGeo.boundingBox.min.z) / 2.0;
-      textGeo.translate(-midX, 0, -midZ);
+      textGeo.center();
 
       // MATERIAL
-      const materialF = new THREE.MeshPhongMaterial({
-        color: "black",
-      });
-      const materialB = new THREE.MeshPhongMaterial({
-        color: "black",
+      const material = new THREE.MeshStandardMaterial({
+        color: "orange",
+        metalness: 0.9,
+        roughness: 0.2,
+        wireframe: true,
       });
 
       // CUBE ( COMPLETE OBJECT made of MESH )
-      const cube = new THREE.Mesh(textGeo, [materialF, materialB]);
+      const cube = new THREE.Mesh(textGeo, material);
       scene.add(cube);
 
-      // CONTROLS
-      // const controls = new OrbitControls(camera, renderer.domElement);
+      // RAYCASTER
+      const raycaster = new THREE.Raycaster();
+      const onMouseMove = (e) => {
+        const coordinate = {
+          x: (e.clientX / renderer.domElement.clientWidth) * 2 - 1,
+          y: -(e.clientY / renderer.domElement.clientHeight) * 2 + 1,
+        };
+
+        raycaster.setFromCamera(coordinate, camera);
+        const interseption = raycaster.intersectObjects(scene.children, true);
+
+        if (interseption.length > 0) {
+          console.log("in");
+        } else {
+          ("out");
+        }
+      };
+
+      renderer.domElement.addEventListener("mousemove", onMouseMove);
 
       // ANIMATION
       const animate = () => {
         requestAnimationFrame(animate);
-        // cube.rotation.y += 0.001;
+        cube.rotation.y += 0.001;
         renderer.render(scene, camera);
       };
 

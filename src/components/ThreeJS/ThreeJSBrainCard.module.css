@@ -1,4 +1,4 @@
-.link {
-  text-decoration: none;
-  color: black;
+.link canvas {
+  width: 100%;
+  height: 100%;
 }

@@ -1,9 +1,8 @@
-* {
-  font-family: var((--font-bebas-neue));
-}
+/** {*/
+/*  font-family: var((--font-bebas-neue));*/
+/*}*/
 
 a {
   color: black;
   text-decoration: none;
 }
-

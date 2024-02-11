@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./eye.module.css";
 import { handleClick } from "./onClick";
 
-const Eye = () => {
+export default function Eye() {
   const source = [
     "/images/TOKYO1.JPEG",
     "/images/TOKYO2.JPEG",
@@ -47,18 +47,11 @@ const Eye = () => {
   ];
   const pictureRender = source.map((item, index) => (
     <div key={index} className={styles.frame}>
-      <img
-        src={item}
-        alt=""
-        className={styles.picture}
-        onClick={() => handleClick(item)}
-      />
+      <div className={styles.picture} onClick={() => handleClick(item)}>
+        <Image src={item} alt="pictures of tokyo" fill />
+      </div>
     </div>
   ));
 
   return <div className={styles.container}>{pictureRender}</div>;
-};
-
-export default Eye;
-
-// Image 최적화.
+}

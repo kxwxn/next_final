@@ -1,20 +1,22 @@
 import { MongoClient } from "mongodb";
 
+const url: string | undefined = process.env.MONGODB_URI as string;
+
+let connectDB: Promise<MongoClient>;
+
 declare global {
   interface Global {
-    _mongo: any;
+    _mongo: MongoClient | undefined;
   }
 }
-
-const uri: string | undefined = process.env.MONGODB_URI;
-let connectDB;
 
 if (process.env.NODE_ENV === "development") {
   if (!global._mongo) {
-    global._mongo = new MongoClient(uri).connect();
+    global._mongo = new MongoClient(url).connect();
   }
   connectDB = global._mongo;
 } else {
-  connectDB = new MongoClient(uri).connect();
+  connectDB = new MongoClient(url).connect();
 }
+
 export { connectDB };

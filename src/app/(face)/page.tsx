@@ -1,6 +1,6 @@
 "use client";
 import styles from "./page.module.css";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/facemesh";
 import Webcam from "react-webcam";
@@ -13,49 +13,51 @@ const Face = () => {
 
   // Load facemesh
 
-  const runFacemesh = async () => {
-    // TensorFlow.js 초기화
-    await tf.setBackend("webgl");
-    await tf.ready();
+  useEffect(() => {
+    const runFacemesh = async () => {
+      // TensorFlow.js 초기화
+      await tf.setBackend("webgl");
+      await tf.ready();
 
-    const net = await facemesh.load({
-      inputResolution: { width: 640, height: 480 },
-      scale: 0.8,
-    });
-    setInterval(() => {
-      detect(net);
-    }, 150);
-    setIsLoading(false);
-  };
+      const net = await facemesh.load({
+        inputResolution: { width: 640, height: 480 },
+        scale: 0.8,
+      });
+      setInterval(() => {
+        detect(net);
+      }, 150);
+      setIsLoading(false);
+    };
 
-  // Detect function
+    // Detect function
 
-  const detect = async (net: any) => {
-    if (
-      typeof webcamRef.current !== "undefined" &&
-      webcamRef.current !== null &&
-      webcamRef.current.video.readyState === 4
-    ) {
-      // Get Video Properties
-      const video: any = webcamRef.current.video;
-      const videoWidth: any = webcamRef.current.video.videoWidth;
-      const videoHeight: any = webcamRef.current.video.videoHeight;
+    const detect = async (net: any) => {
+      if (
+        typeof webcamRef.current !== "undefined" &&
+        webcamRef.current !== null &&
+        webcamRef.current.video.readyState === 4
+      ) {
+        // Get Video Properties
+        const video: any = webcamRef.current.video;
+        const videoWidth: any = webcamRef.current.video.videoWidth;
+        const videoHeight: any = webcamRef.current.video.videoHeight;
 
-      // Set Video width
-      webcamRef.current.video.width = videoWidth;
-      webcamRef.current.video.height = videoHeight;
-      // Set Canvas width
-      canvasRef.current.width = videoWidth;
-      canvasRef.current.height = videoHeight;
-      // Make detections
-      const face = await net.estimateFaces(video);
-      // Get canvas context for drawing
+        // Set Video width
+        webcamRef.current.video.width = videoWidth;
+        webcamRef.current.video.height = videoHeight;
+        // Set Canvas width
+        canvasRef.current.width = videoWidth;
+        canvasRef.current.height = videoHeight;
+        // Make detections
+        const face = await net.estimateFaces(video);
+        // Get canvas context for drawing
 
-      const ctx: any = canvasRef.current.getContext("2d");
-      drawMesh(face, ctx);
-    }
-  };
-  runFacemesh();
+        const ctx: any = canvasRef.current.getContext("2d");
+        drawMesh(face, ctx);
+      }
+    };
+    runFacemesh();
+  }, []);
 
   const handleCanvasClick = () => {
     window.alert("please check your console");
