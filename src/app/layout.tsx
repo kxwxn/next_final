@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { Bebas_Neue } from "next/font/google";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/navbar/Navbar";
 import Menu from "@/components/menu/page";
 import { ReactNode } from "react";
 import styles from "./layout.module.css";
 import { ClerkProvider } from "@clerk/nextjs";
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
