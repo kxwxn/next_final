@@ -1,11 +1,10 @@
 "use client";
 import Image from "next/image";
 import styles from "./EarDeleteBtn.module.css";
-import React from "react";
+import React, { FormEventHandler } from "react";
 export default function EarDeleteBtn({ slugId }: { slugId: number }) {
-  const onSubmit = (
-    event: React.FormEvent<HTMLInputElement>,
-    formData: FormData,
+  const onSubmit: React.FormEventHandler<HTMLFormElement> = (
+    event: React.FormEvent<HTMLFormElement>,
   ) => {
     if (confirm("Are you sure?")) {
       return true;

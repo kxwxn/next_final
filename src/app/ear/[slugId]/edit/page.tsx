@@ -3,7 +3,7 @@ import EarEditForm from "@/components/EarEditForm/EarEditForm";
 
 interface paramsType {
   params: {
-    slugId: string;
+    slugId: number;
   };
 }
 export default function Edit({ params }: paramsType) {
