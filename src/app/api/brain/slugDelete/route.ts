@@ -1,4 +1,4 @@
-import { connectDB } from "@/db/connectDB";
+import connectDB from "@/db/connectDB";
 import { redirect } from "next/navigation";
 import { Timestamp } from "mongodb";
 import { auth } from "@clerk/nextjs";
@@ -18,6 +18,7 @@ export async function POST(request: Request) {
       author: userId,
       title: title,
       content: content,
+      // @ts-ignore
       createdAt: new Timestamp(),
     });
     shouldRedirect = true;

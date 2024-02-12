@@ -1,4 +1,4 @@
-import { connectDB } from "@/db/connectDB";
+import connectDB from "@/db/connectDB";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs";
 import { ObjectId } from "bson";
@@ -11,20 +11,22 @@ export async function POST(request: Request) {
     const title = formData.get("title");
     const content = formData.get("content");
     const db = (await connectDB).db("n0wlk");
-    const slugId = formData.get("editId");
-    db.collection("brainPost").updateOne(
-      { _id: new ObjectId(slugId) },
-      {
-        $set: {
-          author: userId,
-          title: title,
-          content: content,
+    const slugId: string | undefined = formData.get("editId")?.toString();
+    if (slugId !== null) {
+      db.collection("brainPost").updateOne(
+        { _id: new ObjectId(slugId) },
+        {
+          $set: {
+            author: userId,
+            title: title,
+            content: content,
+          },
+          $currentDate: {
+            createdAt: true,
+          },
         },
-        $currentDate: {
-          createdAt: true,
-        },
-      },
-    );
+      );
+    }
     db.collection("brainDraft").deleteOne({ author: userId });
     shouldRedirect = true;
   } catch (err) {

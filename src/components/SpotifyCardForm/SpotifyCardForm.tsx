@@ -1,21 +1,22 @@
 import styles from "./SpotifyCardForm.module.css";
 import { Spotify } from "react-spotify-embed";
-import { connectDB } from "@/db/connectDB";
+import connectDB from "@/db/connectDB";
 import SpotifyBtnSet from "@/components/SpotifyBtnSet/SpotifyBtnSet";
 import { auth, currentUser } from "@clerk/nextjs";
 import moment from "moment";
+import { WithId } from "mongodb";
 
 export default async function SpotifyCardForm() {
   const curUser = await currentUser();
   const user = auth().userId;
   const db = (await connectDB).db("n0wlk");
   let result = await db.collection("ear").find().sort({ _id: -1 }).toArray();
-  result = result.map((a) => {
+  result = result.map((a: WithId<any>) => {
     a._id = a._id.toString();
     return a;
   });
 
-  const DisplaySpotifyCards = result.map((item, index) => {
+  const DisplaySpotifyCards = result.map((item: WithId<any>, index: number) => {
     const user = auth().userId;
     const match = user === item.author;
     const timeStamp = new Date(item.createdAt.getHighBits() * 1000);

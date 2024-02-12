@@ -4,18 +4,24 @@ import styles from "./ThreeJSBrainCard.module.css";
 import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
 import Link from "next/link";
-import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
-import { FontLoader } from "three/addons/loaders/FontLoader.js";
+import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
+import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
 import { gsap } from "gsap";
 
-export default function ThreeJSBrainCard({ uri, title }) {
-  const ref = useRef();
+export default function ThreeJSBrainCard({
+  uri,
+  title,
+}: {
+  uri: string;
+  title: string;
+}) {
+  const canvasRef = useRef<HTMLAnchorElement>(null);
   useEffect(() => {
     // RENDERER
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.shadowMap.enabled = true;
     // renderer.setPixelRatio(window.devicePixelRatio);
-    ref.current.appendChild(renderer.domElement);
+    canvasRef.current && canvasRef.current.appendChild(renderer.domElement);
 
     // SCENE
     const scene = new THREE.Scene();
@@ -62,13 +68,13 @@ export default function ThreeJSBrainCard({ uri, title }) {
 
       // RAYCASTER
       const raycaster = new THREE.Raycaster();
-      const onMouseMove = (e) => {
-        const coordinate = {
+      const onMouseMove = (e: { clientX: number; clientY: number }) => {
+        const coordinate: { x: number; y: number } = {
           x: (e.clientX / renderer.domElement.clientWidth) * 2 - 1,
           y: -(e.clientY / renderer.domElement.clientHeight) * 2 + 1,
         };
 
-        raycaster.setFromCamera(coordinate, camera);
+        // raycaster.setFromCamera(coordinate, camera);
         const interseption = raycaster.intersectObjects(scene.children, true);
 
         if (interseption.length > 0) {
@@ -91,11 +97,15 @@ export default function ThreeJSBrainCard({ uri, title }) {
     });
 
     return () => {
-      if (ref.current) {
-        ref.current.removeChild(renderer.domElement);
+      if (canvasRef.current) {
+        canvasRef.current.removeChild(renderer.domElement);
       }
     };
   }, []);
 
-  return <Link ref={ref} className={styles.link} href={uri} />;
+  return (
+    <div>
+      <Link ref={canvasRef} href={uri} className={styles.link} />
+    </div>
+  );
 }

@@ -1,17 +1,22 @@
 import styles from "./SlugDeleteBtn.module.css";
 import { ObjectId } from "bson";
 import { auth } from "@clerk/nextjs";
-import { connectDB } from "@/db/connectDB";
+import connectDB from "@/db/connectDB";
 import { redirect } from "next/navigation";
 
-export default async function SlugDeleteBtn({ params }) {
+interface paramsType {
+  params: {
+    brainSlug: string;
+  };
+}
+export default async function SlugDeleteBtn({ params }: paramsType) {
   const slugId = params.brainSlug;
   const db = (await connectDB).db("n0wlk");
   const slug = await db
     .collection("brainPost")
     .findOne({ _id: new ObjectId(slugId) });
   const { userId: authId } = auth();
-  const userInfo = slug.author;
+  const userInfo = slug?.author;
 
   async function deleteSlug() {
     "use server";

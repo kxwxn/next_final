@@ -1,14 +1,14 @@
 "use client";
 import styles from "./BodyThreeSpace.module.css";
-import { useEffect, useRef } from "react";
+import { MutableRefObject, useEffect, useRef } from "react";
 import * as THREE from "three";
-import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { PositionalAudioHelper } from "three/addons/helpers/PositionalAudioHelper.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { PositionalAudioHelper } from "three/examples/jsm/helpers/PositionalAudioHelper";
 
 export default function BodyThreeSpace() {
-  const spaceRef = useRef();
-  const audioRef = useRef();
+  const spaceRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null!);
   useEffect(() => {
     // CAMERA
     const camera = new THREE.PerspectiveCamera(
@@ -18,7 +18,7 @@ export default function BodyThreeSpace() {
       1000,
     );
     camera.position.set(10, 10, 10);
-    camera.lookAt(new THREE.Vector3(0,0,0))
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     // SCENE
     const scene = new THREE.Scene();

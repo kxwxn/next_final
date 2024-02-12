@@ -1,7 +1,10 @@
 import Link from "next/link";
 import styles from "./ArchivingBtn.module.css";
+interface BtnProps {
+  prop: string;
+}
 
-export default function ArchivingBtn(props) {
+export default function ArchivingBtn(props: BtnProps) {
   return (
     <div>
       <Link

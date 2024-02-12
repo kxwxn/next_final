@@ -7,8 +7,8 @@ import Webcam from "react-webcam";
 import { drawMesh } from "../../../utilities";
 
 const Face = () => {
-  const webcamRef = useRef(null);
-  const canvasRef = useRef(null);
+  const webcamRef: React.MutableRefObject<any> = useRef(null);
+  const canvasRef: React.MutableRefObject<any> = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
 
   // Load facemesh
@@ -22,7 +22,7 @@ const Face = () => {
       const net = await facemesh.load({
         inputResolution: { width: 640, height: 480 },
         scale: 0.8,
-      });
+      } as any);
       setInterval(() => {
         detect(net);
       }, 150);

@@ -1,18 +1,17 @@
 import styles from "./EarEditForm.module.css";
-import { connectDB } from "@/db/connectDB";
+import connectDB from "@/db/connectDB";
 import { ObjectId } from "bson";
 import ArchivingBtnSet from "@/components/ArchivingBtnSet/ArchivingBtnSet";
 import { auth } from "@clerk/nextjs";
 import { Timestamp } from "mongodb";
 import { redirect } from "next/navigation";
-export default async function EarEditForm(props) {
-  const slugId = props.slugId;
+export default async function EarEditForm({ slugId }: { slugId: number }) {
   const db = (await connectDB).db("n0wlk");
-  const slug = await db
+  const slug: any = await db
     .collection("ear")
     .findOne({ _id: new ObjectId(slugId) });
 
-  const handleSubmit = async (formData) => {
+  const handleSubmit = async (formData: FormData) => {
     "use server";
     let shouldRedirect = false;
 

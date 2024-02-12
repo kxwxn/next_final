@@ -1,7 +1,6 @@
 import styles from "./brain.module.css";
 import ThreeDCardForm from "@/components/ThreeDCardForm/page";
-import { connectDB } from "@/db/connectDB";
-import ArchivingBtn from "@/components/ArchivingBtn/ArchivingBtn";
+import connectDB from "@/db/connectDB";
 
 export default async function Brain() {
   const db = (await connectDB).db("n0wlk");

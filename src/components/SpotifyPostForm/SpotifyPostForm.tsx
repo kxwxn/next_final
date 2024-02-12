@@ -1,5 +1,5 @@
 import styles from "./SpotifyPostForm.module.css";
-import { connectDB } from "@/db/connectDB";
+import connectDB from "@/db/connectDB";
 import { auth } from "@clerk/nextjs";
 import { Timestamp } from "mongodb";
 import ArchivingBtnSet from "@/components/ArchivingBtnSet/ArchivingBtnSet";
@@ -11,7 +11,7 @@ export default async function SpotifyPostForm() {
     redirectUrl: "ear",
   };
 
-  const handleSubmit = async (formData) => {
+  const handleSubmit = async (formData: FormData) => {
     "use server";
     let shouldRedirect = false;
 
@@ -22,6 +22,7 @@ export default async function SpotifyPostForm() {
         author: userId,
         spotifyUrl: formData.get("spotifyUrl"),
         content: formData.get("content"),
+        //@ts-ignore
         createdAt: new Timestamp(),
       });
       shouldRedirect = true;

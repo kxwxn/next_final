@@ -1,4 +1,4 @@
-import { connectDB } from "@/db/connectDB";
+import connectDB from "@/db/connectDB";
 import { ObjectId } from "bson";
 import styles from "./BrainSlug.module.css";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -11,12 +11,17 @@ import rehypeHighlight from "rehype-highlight";
 import rehypeCodeTitles from "rehype-code-titles";
 import rehypePrismAll from "rehype-prism-plus";
 
-export default async function BrainSlug({ params }) {
+export default async function BrainSlug({ params }: { params: any }) {
   const slugId = params.brainSlug;
   const db = (await connectDB).db("n0wlk");
   const slug = await db
     .collection("brainPost")
     .findOne({ _id: new ObjectId(slugId) });
+
+  if (!slug) {
+    return <div>Page not Found</div>;
+  }
+
   const { userId: authId } = auth();
   const userInfo = slug.author;
   const timeStamp = new Date(slug.createdAt.getHighBits() * 1000);
@@ -26,11 +31,6 @@ export default async function BrainSlug({ params }) {
     day: "numeric",
     year: "numeric",
   });
-  const options = {
-    mdxOptions: {
-      rehypePlugins: [rehypeCodeTitles, rehypePrismAll],
-    },
-  };
 
   return (
     <div className={styles.container}>
@@ -53,7 +53,7 @@ export default async function BrainSlug({ params }) {
         </div>
       </div>
       <div className={styles.slugContent}>
-        <MDXRemote source={slug.content} options={options} />
+        <MDXRemote source={slug.content} />
       </div>
     </div>
   );

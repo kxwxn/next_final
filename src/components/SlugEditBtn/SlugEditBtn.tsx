@@ -1,7 +1,12 @@
 import styles from "./SlugEditBtn.module.css";
 import Link from "next/link";
 
-export default function SlugEditBtn({ params }) {
+interface paramsType {
+  params: {
+    brainSlug: string;
+  };
+}
+export default function SlugEditBtn({ params }: paramsType) {
   const { brainSlug } = params;
   return (
     <>

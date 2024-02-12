@@ -1,8 +1,12 @@
 "use client";
 import Image from "next/image";
 import styles from "./EarDeleteBtn.module.css";
-export default function EarDeleteBtn({ slugId }) {
-  const onSubmit = (event, formData: FormData) => {
+import React from "react";
+export default function EarDeleteBtn({ slugId }: { slugId: number }) {
+  const onSubmit = (
+    event: React.FormEvent<HTMLInputElement>,
+    formData: FormData,
+  ) => {
     if (confirm("Are you sure?")) {
       return true;
     } else {
@@ -21,11 +25,6 @@ export default function EarDeleteBtn({ slugId }) {
       <button type="submit" className={styles.btn}>
         <Image
           src={process.env.DELETING_IMAGES || "/icons/deleting.png"}
-          srcSet={
-            process.env.EDITING_IMAGES
-              ? undefined
-              : "/icons/deleting.png 1x, /icons/deleting.png 2x"
-          }
           width={20}
           height={20}
           alt={"an image for deleting icon"}

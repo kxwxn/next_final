@@ -1,12 +1,10 @@
-import { connectDB } from "@/db/connectDB";
+import connectDB from "@/db/connectDB";
 import { redirect } from "next/navigation";
 import { Timestamp } from "mongodb";
 import { auth } from "@clerk/nextjs";
 
 export async function POST(request: Request) {
-  console.log("I'm here!", request.formData);
   const { userId } = auth();
-  console.log("userId", userId);
   let shouldRedirect = false;
   try {
     const formData = await request.formData();
@@ -18,6 +16,7 @@ export async function POST(request: Request) {
       author: userId,
       title: title,
       content: content,
+      // @ts-ignore
       createdAt: new Timestamp(),
     });
     db.collection("brainDraft").deleteOne({ author: userId });

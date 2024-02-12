@@ -1,7 +1,12 @@
 import SpotifyPostForm from "@/components/SpotifyPostForm/SpotifyPostForm";
 import EarEditForm from "@/components/EarEditForm/EarEditForm";
 
-export default function Edit({ params }) {
+interface paramsType {
+  params: {
+    slugId: string;
+  };
+}
+export default function Edit({ params }: paramsType) {
   console.log(params);
   return (
     <div>

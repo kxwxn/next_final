@@ -1,12 +1,21 @@
 import styles from "./SlugEditForm.module.css";
-import { connectDB } from "@/db/connectDB";
+import connectDB from "@/db/connectDB";
 import { ObjectId } from "bson";
 import ArchivingBtnSet from "@/components/ArchivingBtnSet/ArchivingBtnSet";
-import ModifyBtnSet from "@/components/ModifyBtnSet/ModifyBtnSet";
-export default async function SlugEditForm(params) {
+import { WithId } from "mongodb";
+
+interface ParamsType {
+  brainSlug: string;
+}
+
+interface SlugType {
+  title: string;
+  content: string;
+}
+export default async function SlugEditForm(params: ParamsType) {
   const slugId = params.brainSlug;
   const db = (await connectDB).db("n0wlk");
-  const slug = await db
+  const slug: WithId<any> | null = await db
     .collection("brainPost")
     .findOne({ _id: new ObjectId(slugId) });
 

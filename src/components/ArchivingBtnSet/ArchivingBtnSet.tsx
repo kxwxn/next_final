@@ -1,24 +1,30 @@
 import styles from "./ArchivingBtnSet.module.css";
 import { auth } from "@clerk/nextjs";
-import { connectDB } from "@/db/connectDB";
+import connectDB from "@/db/connectDB";
 import { Timestamp } from "mongodb";
 import { redirect } from "next/navigation";
-export default function ArchivingBtnSet(props) {
+
+interface BtnSetProps {
+  collectionName: string;
+  redirectUrl: string;
+}
+
+export default function ArchivingBtnSet(props: BtnSetProps) {
   const { collectionName, redirectUrl } = props;
-  console.log(collectionName, redirectUrl);
-  async function handleDraft(formData) {
+  interface FormData {}
+  async function handleDraft(formData: any) {
     "use server";
     const { userId } = auth();
     const db = (await connectDB).db("n0wlk");
     db.collection(`${collectionName}`).updateOne(
       { author: userId },
-
       {
         $set: {
           title: formData.get("title"),
           spotifyUrl: formData.get("spotifyUrl"),
           content: formData.get("content"),
           author: userId,
+          // @ts-ignore
           createdAt: new Timestamp(),
         },
       },
@@ -27,7 +33,7 @@ export default function ArchivingBtnSet(props) {
     );
   }
 
-  async function handleDelete(formData) {
+  async function handleDelete(formData: any) {
     "use server";
     const { userId } = auth();
     const db = (await connectDB).db("n0wlk");

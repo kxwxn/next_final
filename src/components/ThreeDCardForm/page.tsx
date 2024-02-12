@@ -1,17 +1,26 @@
-import Link from "next/link";
 import styles from "./ThreeDCardForm.module.css";
 import ThreeJSBrainCard from "@/components/ThreeJS/ThreeJSBrainCard";
+import { ObjectId } from "bson";
+import { Timestamp } from "mongodb";
 
-export default function ThreeDCardForm(props) {
+interface PropsType {
+  result: [
+    {
+      _id: ObjectId;
+      author: string;
+      title: string;
+      content: string;
+      createdAt: Timestamp;
+    },
+  ];
+}
+export default function ThreeDCardForm(props: PropsType) {
+  console.log(props);
   const BrainData = props.result;
 
   const cardRendering = BrainData.map((item, index: number) => (
     <div key={index} className={styles.frame}>
-      <ThreeJSBrainCard
-        uri={"/brain/" + item._id}
-        title={item.title}
-        className={styles.card}
-      />
+      <ThreeJSBrainCard uri={"/brain/" + item._id} title={item.title} />
     </div>
   ));
 
