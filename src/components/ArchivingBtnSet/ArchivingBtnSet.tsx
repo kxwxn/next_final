@@ -38,7 +38,6 @@ export default function ArchivingBtnSet(props: BtnSetProps) {
     const { userId } = auth();
     const db = (await connectDB).db("n0wlk");
     db.collection(`${collectionName}`).deleteOne({ author: userId });
-    redirect(`{/${redirectUrl}}`);
   }
 
   return (

@@ -12,3 +12,5 @@ export default async function Edit({ params }: paramsType) {
     </div>
   );
 }
+
+// draft delete 버튼은 redirect 시키면 안된다.
