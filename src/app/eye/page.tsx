@@ -49,7 +49,7 @@ export default function Eye() {
     <div key={index} className={styles.frame}>
       <div className={styles.picture} onClick={() => handleClick(item)}>
         <Image
-          src={`${process.env.PUBLIC_URL}/${item}`}
+          src={`/${process.env.PUBLIC_URL}${item}`}
           alt="pictures of tokyo"
           fill
         />
