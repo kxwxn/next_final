@@ -29,7 +29,7 @@ export default async function SpotifyCardForm() {
 
     return (
       <div key={index} className={styles.frame}>
-        <Spotify link={item.spotifyUrl} />
+        <Spotify link={item.spotifyUrl} className={styles.spotify} />
         <div className={styles.date}>
           <div>{relativeTime}</div>
           <div>{time}</div>

@@ -48,7 +48,11 @@ export default function Eye() {
   const pictureRender = source.map((item, index) => (
     <div key={index} className={styles.frame}>
       <div className={styles.picture} onClick={() => handleClick(item)}>
-        <Image src={item} alt="pictures of tokyo" fill />
+        <Image
+          src={`${process.env.PUBLIC_URL}/${item}`}
+          alt="pictures of tokyo"
+          fill
+        />
       </div>
     </div>
   ));

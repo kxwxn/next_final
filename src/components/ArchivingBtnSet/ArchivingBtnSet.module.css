@@ -216,3 +216,9 @@
   -moz-transform: rotateX(-90deg);
   transform: rotateX(-90deg);
 }
+
+@media screen and (max-width: 1110px) {
+}
+
+@media screen and (max-width: 786px) {
+}

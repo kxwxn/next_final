@@ -54,7 +54,7 @@ const Menu = () => {
         <Link
           target="_blank"
           rel="noopener noreferrer"
-          href="mailto:kxwxn@icloud.com"
+          href="mailto:kiwonKim@n0wlk.com"
         >
           <img
             className={styles.linkIcon}

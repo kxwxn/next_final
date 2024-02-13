@@ -1,0 +1,65 @@
+.btnDelete {
+  position: fixed;
+  top: 0.5em;
+  right: 10em;
+  border: none;
+  width: 130px;
+  height: 40px;
+  line-height: 40px;
+  -webkit-perspective: 230px;
+  transition: all 0.3s ease;
+  background: transparent;
+  perspective: 230px;
+  display: inline-block;
+  cursor: pointer;
+  color: red;
+}
+.btnDelete span {
+  position: fixed;
+  top: 0.1em;
+  right: 4em;
+  display: block;
+  width: 130px;
+  height: 40px;
+  border: 2px solid red;
+  margin: 0;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.btnDelete span:nth-child(1) {
+  box-shadow:
+    -7px -7px 20px 0px red,
+    -4px -4px 5px 0px red,
+    7px 7px 20px 0px red,
+    4px 4px 5px 0px red;
+  -webkit-transform: rotateX(90deg);
+  -moz-transform: rotateX(90deg);
+  transform: rotateX(90deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btnDelete span:nth-child(2) {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+  -webkit-transform-origin: 50% 50% -20px;
+  -moz-transform-origin: 50% 50% -20px;
+  transform-origin: 50% 50% -20px;
+}
+.btnDelete:hover span:nth-child(1) {
+  -webkit-transform: rotateX(0deg);
+  -moz-transform: rotateX(0deg);
+  transform: rotateX(0deg);
+}
+.btnDelete:hover span:nth-child(2) {
+  background: #e0e5ec;
+  color: #e0e5ec;
+  -webkit-transform: rotateX(-90deg);
+  -moz-transform: rotateX(-90deg);
+  transform: rotateX(-90deg);
+}
