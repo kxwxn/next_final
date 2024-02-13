@@ -2,7 +2,6 @@
 import Image from "next/image";
 import styles from "./eye.module.css";
 import { handleClick } from "./onClick";
-import images from "/";
 
 export default function Eye() {
   const source = [
