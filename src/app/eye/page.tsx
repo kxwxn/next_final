@@ -2,55 +2,55 @@
 import Image from "next/image";
 import styles from "./eye.module.css";
 import { handleClick } from "./onClick";
-
+import images from "/";
 
 export default function Eye() {
   const source = [
-    "/images/TOKYO1.JPEG",
-    "/images/TOKYO2.JPEG",
-    "/images/TOKYO3.JPEG",
-    "/images/TOKYO4.JPEG",
-    "/images/TOKYO5.JPEG",
-    "/images/TOKYO6.JPEG",
-    "/images/TOKYO7.JPEG",
-    "/images/TOKYO8.JPEG",
-    "/images/TOKYO9.JPEG",
-    "/images/TOKYO10.JPEG",
-    "/images/TOKYO11.JPEG",
-    "/images/TOKYO12.JPEG",
-    "/images/TOKYO13.JPEG",
-    "/images/TOKYO14.JPEG",
-    "/images/TOKYO15.JPEG",
-    "/images/TOKYO16.JPEG",
-    "/images/TOKYO17.JPEG",
-    "/images/TOKYO18.JPEG",
-    "/images/TOKYO19.JPEG",
-    "/images/TOKYO20.JPEG",
-    "/images/TOKYO21.JPEG",
-    "/images/TOKYO22.JPEG",
-    "/images/TOKYO23.JPEG",
-    "/images/TOKYO24.JPEG",
-    "/images/TOKYO25.JPEG",
-    "/images/TOKYO26.JPEG",
-    "/images/TOKYO27.JPEG",
-    "/images/TOKYO28.JPEG",
-    "/images/TOKYO29.JPEG",
-    "/images/TOKYO30.JPEG",
-    "/images/TOKYO31.JPEG",
-    "/images/TOKYO32.JPEG",
-    "/images/TOKYO33.JPEG",
-    "/images/TOKYO34.JPEG",
-    "/images/TOKYO35.JPEG",
-    "/images/TOKYO36.JPEG",
-    "/images/TOKYO37.JPEG",
-    "/images/TOKYO38.JPEG",
-    "/images/TOKYO39.JPEG",
+    "/images/TOKYO1.jpeg",
+    "/images/TOKYO2.jpeg",
+    "/images/TOKYO3.jpeg",
+    "/images/TOKYO4.jpeg",
+    "/images/TOKYO5.jpeg",
+    "/images/TOKYO6.jpeg",
+    "/images/TOKYO7.jpeg",
+    "/images/TOKYO8.jpeg",
+    "/images/TOKYO9.jpeg",
+    "/images/TOKYO10.jpeg",
+    "/images/TOKYO11.jpeg",
+    "/images/TOKYO12.jpeg",
+    "/images/TOKYO13.jpeg",
+    "/images/TOKYO14.jpeg",
+    "/images/TOKYO15.jpeg",
+    "/images/TOKYO16.jpeg",
+    "/images/TOKYO17.jpeg",
+    "/images/TOKYO18.jpeg",
+    "/images/TOKYO19.jpeg",
+    "/images/TOKYO20.jpeg",
+    "/images/TOKYO21.jpeg",
+    "/images/TOKYO22.jpeg",
+    "/images/TOKYO23.jpeg",
+    "/images/TOKYO24.jpeg",
+    "/images/TOKYO25.jpeg",
+    "/images/TOKYO26.jpeg",
+    "/images/TOKYO27.jpeg",
+    "/images/TOKYO28.jpeg",
+    "/images/TOKYO29.jpeg",
+    "/images/TOKYO30.jpeg",
+    "/images/TOKYO31.jpeg",
+    "/images/TOKYO32.jpeg",
+    "/images/TOKYO33.jpeg",
+    "/images/TOKYO34.jpeg",
+    "/images/TOKYO35.jpeg",
+    "/images/TOKYO36.jpeg",
+    "/images/TOKYO37.jpeg",
+    "/images/TOKYO38.jpeg",
+    "/images/TOKYO39.jpeg",
   ];
 
   const pictureRender = source.map((item, index) => (
     <div key={index} className={styles.frame}>
       <div className={styles.picture} onClick={() => handleClick(item)}>
-        <img src={item} className={styles.picture} />
+        <Image src={item} alt="pictures of tokyo" fill />
       </div>
     </div>
   ));
