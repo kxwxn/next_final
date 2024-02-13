@@ -47,10 +47,14 @@ export default function Eye() {
   ];
 
   const pictureRender = source.map((item, index) => (
-    <div key={index} className={styles.frame}>
-      <div className={styles.picture} onClick={() => handleClick(item)}>
-        <Image src={item} alt="pictures of tokyo" fill />
-      </div>
+    <div key={index} className={styles.frame} onClick={() => handleClick(item)}>
+      <Image
+        src={item}
+        alt="pictures of tokyo"
+        layout="intrinsic"
+        width={280}
+        height={280}
+      />
     </div>
   ));
 

@@ -1,13 +1,15 @@
 .container {
-  width: auto;
+  width: 100dvw;
   height: auto;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
 }
 .title {
-  padding-top: 1rem;
+  padding-top: 4rem;
+  padding-bottom: 1rem;
 }
 .content {
-  width: auto;
+  width: 100%;
 }
