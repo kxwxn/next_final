@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "./eye.module.css";
 import { handleClick } from "./onClick";
 
+
 export default function Eye() {
   const source = [
     "/images/TOKYO1.JPEG",
@@ -45,14 +46,11 @@ export default function Eye() {
     "/images/TOKYO38.JPEG",
     "/images/TOKYO39.JPEG",
   ];
+
   const pictureRender = source.map((item, index) => (
     <div key={index} className={styles.frame}>
       <div className={styles.picture} onClick={() => handleClick(item)}>
-        <Image
-          src={`/${process.env.PUBLIC_URL}${item}`}
-          alt="pictures of tokyo"
-          fill
-        />
+        <img src={item} className={styles.picture} />
       </div>
     </div>
   ));
