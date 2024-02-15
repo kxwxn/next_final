@@ -1,24 +1,27 @@
 import styles from "./ArchivingForm.module.css";
 import connectDB from "@/db/connectDB";
-import { auth } from "@clerk/nextjs";
+import { auth, currentUser } from "@clerk/nextjs";
 import { Timestamp } from "mongodb";
 import { redirect } from "next/navigation";
 import ArchivingBtnSet from "@/components/ArchivingBtnSet/ArchivingBtnSet";
 
-export default function ArchivingForm() {
+export default async function ArchivingForm() {
+  const { userId } = auth();
+  const user = await currentUser();
+  const name = user?.firstName + " " + user?.lastName;
+
   async function handleDraft(formData: FormData) {
     "use server";
-    console.log(formData);
-    const { userId } = auth();
     const db = (await connectDB).db("n0wlk");
     db.collection("brainDraft").updateOne(
       { author: userId },
-
       {
         $set: {
+          author: userId,
+          name: name,
+          profilePicture: user?.imageUrl,
           title: formData.get("title"),
           content: formData.get("content"),
-          author: userId,
           // @ts-ignore
           createdAt: new Timestamp(),
         },

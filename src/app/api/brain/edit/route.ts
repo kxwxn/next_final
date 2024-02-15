@@ -2,6 +2,7 @@ import connectDB from "@/db/connectDB";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs";
 import { ObjectId } from "bson";
+import { Timestamp } from "mongodb";
 
 export async function POST(request: Request) {
   const { userId } = auth();
@@ -22,7 +23,8 @@ export async function POST(request: Request) {
             content: content,
           },
           $currentDate: {
-            createdAt: true,
+            // @ts-ignore
+            createdAt: new Timestamp(),
           },
         },
       );

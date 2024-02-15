@@ -1,5 +1,6 @@
 import connectDB from "@/db/connectDB";
 import { ObjectId } from "bson";
+import "@/styles/atom-one-dark.css";
 import styles from "./BrainSlug.module.css";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
@@ -8,12 +9,14 @@ import SlugDeleteBtn from "@/components/SlugDeleteBtn/SlugDeleteBtn";
 import SlugEditBtn from "@/components/SlugEditBtn/SlugEditBtn";
 import moment from "moment";
 import rehypeHighlight from "rehype-highlight";
+import rehypePrettyCode from "rehype-pretty-code";
+import remarkGfm from "remark-gfm";
 import rehypeCodeTitles from "rehype-code-titles";
-import rehypePrismAll from "rehype-prism-plus";
 
 export default async function BrainSlug({ params }: { params: any }) {
   const slugId = params.brainSlug;
   const db = (await connectDB).db("n0wlk");
+
   const slug = await db
     .collection("brainPost")
     .findOne({ _id: new ObjectId(slugId) });
@@ -31,6 +34,13 @@ export default async function BrainSlug({ params }: { params: any }) {
     day: "numeric",
     year: "numeric",
   });
+
+  const options = {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [rehypePrettyCode, rehypeCodeTitles],
+    },
+  };
 
   return (
     <div className={styles.container}>
@@ -53,7 +63,7 @@ export default async function BrainSlug({ params }: { params: any }) {
         </div>
       </div>
       <div className={styles.slugContent}>
-        <MDXRemote source={slug.content} />
+        <MDXRemote source={slug.content} options={options} />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ export async function GET(request: NextRequest) {
   //   const query = searchParams.get("query");
   //   // query is "hello" for /api/search?query=hello
   try {
+    console.log("connected");
     await connectDB;
     return NextResponse.json({ message: "connected!" });
   } catch (err) {

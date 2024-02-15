@@ -1,10 +1,13 @@
 import connectDB from "@/db/connectDB";
 import { redirect } from "next/navigation";
 import { Timestamp } from "mongodb";
-import { auth } from "@clerk/nextjs";
+import { auth, currentUser } from "@clerk/nextjs";
 
 export async function POST(request: Request) {
   const { userId } = auth();
+  const user = await currentUser();
+  const name = user?.firstName + " " + user?.lastName;
+  const profilePicUrl = user?.imageUrl;
   let shouldRedirect = false;
   try {
     const formData = await request.formData();
@@ -14,6 +17,8 @@ export async function POST(request: Request) {
     const db = (await connectDB).db("n0wlk");
     db.collection("brainPost").insertOne({
       author: userId,
+      name: name,
+      profilePicture: profilePicUrl,
       title: title,
       content: content,
       // @ts-ignore

@@ -10,6 +10,7 @@ export default function BodyThreeSpace() {
   const spaceRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   useEffect(() => {
+    console.log("mounted");
     // CAMERA
     const camera = new THREE.PerspectiveCamera(
       100,
@@ -96,26 +97,10 @@ export default function BodyThreeSpace() {
       spaceMaps[i].side = THREE.BackSide;
     }
     const spaceGeo = new THREE.BoxGeometry(1000, 1000, 1000);
-
     const space = new THREE.Mesh(spaceGeo, spaceMaps);
     scene.add(space);
 
-    // GRID
-    // const grid = new THREE.GridHelper(400, 400, "black", "black");
-    // scene.add(grid);
-
-    // AXES
-    const axesHelper = new THREE.AxesHelper(100);
-    scene.add(axesHelper);
-
-    // // create an object for the sound to play from
-    // const sphere = new THREE.SphereGeometry(0.2, 32, 16);
-    // const material = new THREE.MeshPhongMaterial({ color: 0xff2200 });
-    // const mesh = new THREE.Mesh(sphere, material);
-    // scene.add(mesh);
-    //
-    // // finally add the sound to the mesh
-    // mesh.add(sound);
+    // SOUND
 
     // GLB OBJECT LOAD (THE GEO)
     const loader = new GLTFLoader();
@@ -126,30 +111,11 @@ export default function BodyThreeSpace() {
       room.position.y = 3.5;
     });
     loader.load("models/speaker.glb", (glb) => {
-      // AUDIO LISTNER
-      const listener = new THREE.AudioListener();
-      camera.add(listener);
-
-      // creating the POSITIONAL AUDIO OBJECT (passing in the listner)
-      const positionalAudio = new THREE.PositionalAudio(listener);
-
-      const helper = new PositionalAudioHelper(positionalAudio, 0.1);
-      positionalAudio.add(helper);
-
-      // loading a SOUND and set it as the POSITIONAL AUDIO OBJECT's buffer
-      const audioLoader = new THREE.AudioLoader();
-      audioLoader.load("music/Anywhere.mp3", function (buffer) {
-        positionalAudio.setBuffer(buffer);
-        positionalAudio.setRefDistance(20);
-        positionalAudio.autoplay = true;
-        positionalAudio.loop = true;
-        positionalAudio.play();
-      });
       const speaker = glb.scene;
       scene.add(speaker);
       speaker.position.set(1, 1, 1);
       speaker.scale.set(1, 1, 1);
-      speaker.add(positionalAudio);
+      speaker.add();
       scene.add(speaker);
       animate();
     });
@@ -181,34 +147,16 @@ export default function BodyThreeSpace() {
 
     // componentWillUnmount
     return () => {
+      console.log("unmount");
       if (spaceRef.current) {
         spaceRef.current.removeChild(renderer.domElement);
-      }
-      if (audioRef.current) {
-        audioRef.current.remove();
       }
     };
   }, []);
   return (
     <div className={styles.container}>
-      <div className={styles.title}>
-        What can you find here?
-        <span>
-          <button>PLAY</button>
-        </span>
-      </div>
+      <div className={styles.title}>What can you find here?</div>
       <div ref={spaceRef} className={styles.content} />
-      <audio
-        ref={audioRef}
-        loop
-        id="music"
-        preload="auto"
-        style={{ display: "none" }}
-        autoPlay
-      >
-        <source src="music/anywhere.mp3" type="audio/mpeg" />
-        <source src="music/DeepInADream.mp3" type="audio/mpeg" />
-      </audio>
     </div>
   );
 }

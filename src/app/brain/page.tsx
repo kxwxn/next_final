@@ -1,6 +1,14 @@
 import styles from "./brain.module.css";
-import ThreeDCardForm from "@/components/ThreeDCardForm/page";
 import connectDB from "@/db/connectDB";
+import Link from "next/link";
+import moment from "moment";
+import { Permanent_Marker } from "next/font/google";
+import Image from "next/image";
+
+const permanentMarker = Permanent_Marker({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export default async function Brain() {
   const db = (await connectDB).db("n0wlk");
@@ -9,10 +17,41 @@ export default async function Brain() {
     .find()
     .sort({ _id: -1 })
     .toArray();
+  const displayBrainPosts = result.map((item, index) => {
+    const timeStamp = new Date(item.createdAt.getHighBits() * 1000);
+    const relativeTime = moment(timeStamp).fromNow();
+    const time = timeStamp.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+    return (
+      <h1 key={index} className={styles.frame}>
+        <div className={styles.authorInfo}>
+          <Image
+            className={styles.imageFrame}
+            src={item.profilePicture}
+            alt="profile picture"
+            width={30}
+            height={30}
+          />
+          <span className={styles.name}>{item.name}</span>
+        </div>
+        <Link href={"/brain/" + item._id} className={styles.link}>
+          {item.title}
+        </Link>
+        <span className={styles.time}>
+          <span>{relativeTime}</span>
+          {","} <span>{time}</span>
+        </span>
+      </h1>
+    );
+  });
 
   return (
-    <div className={styles.container}>
-      <ThreeDCardForm result={result} />
+    <div className={`${styles.container} ${permanentMarker.className}`}>
+      <h1 className={styles.header}>STORIES from brain </h1>
+      <div className={styles.postsContainer}>{displayBrainPosts}</div>
     </div>
   );
 }

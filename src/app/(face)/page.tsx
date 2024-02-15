@@ -60,7 +60,7 @@ const Face = () => {
   }, []);
 
   const handleCanvasClick = () => {
-    window.alert("please check your console");
+    window.alert("please check your console or you can just ignore this alert");
 
     console.log(
       "Hi welcome to my page, click here →",
