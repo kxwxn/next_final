@@ -41,18 +41,14 @@ export default function ArchivingBtnSet(props: BtnSetProps) {
   }
 
   return (
-    <div className={styles.buttonsContianer}>
+    <div className={styles.container}>
       <button className={styles.btnDelete} formAction={handleDelete}>
-        <span>Click!</span>
         <span>Delete</span>
       </button>
       <button className={styles.btnDraft} formAction={handleDraft}>
-        <span>Saved!</span>
-        <span>Click!</span>
         <span>Save as Draft</span>
       </button>
       <button className={styles.btnArchive} type="submit">
-        <span>Click!</span>
         <span>Publish</span>
       </button>
     </div>

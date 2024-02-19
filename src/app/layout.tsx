@@ -28,6 +28,10 @@ export default function RootLayout({ children, modal }: Props) {
             <Menu />
             <NavBar />
             <div className={styles.content}>
+              <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css"
+              />
               {children}
               {modal}
             </div>

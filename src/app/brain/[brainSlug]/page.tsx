@@ -8,10 +8,6 @@ import { auth } from "@clerk/nextjs";
 import SlugDeleteBtn from "@/components/SlugDeleteBtn/SlugDeleteBtn";
 import SlugEditBtn from "@/components/SlugEditBtn/SlugEditBtn";
 import moment from "moment";
-import rehypeHighlight from "rehype-highlight";
-import rehypePrettyCode from "rehype-pretty-code";
-import remarkGfm from "remark-gfm";
-import rehypeCodeTitles from "rehype-code-titles";
 
 export default async function BrainSlug({ params }: { params: any }) {
   const slugId = params.brainSlug;
@@ -35,13 +31,6 @@ export default async function BrainSlug({ params }: { params: any }) {
     year: "numeric",
   });
 
-  const options = {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypePrettyCode, rehypeCodeTitles],
-    },
-  };
-
   return (
     <div className={styles.container}>
       {authId === userInfo && (
@@ -63,7 +52,7 @@ export default async function BrainSlug({ params }: { params: any }) {
         </div>
       </div>
       <div className={styles.slugContent}>
-        <MDXRemote source={slug.content} options={options} />
+        <MDXRemote source={slug.content} />
       </div>
     </div>
   );
