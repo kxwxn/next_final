@@ -33,17 +33,6 @@ export default async function BrainSlug({ params }: { params: any }) {
 
   return (
     <div className={styles.container}>
-      {authId === userInfo && (
-        <div>
-          <SlugEditBtn params={params} />
-          <SlugDeleteBtn params={params} />
-        </div>
-      )}
-      <Link href={"/brain"} className={styles.btnArchive}>
-        <span>Click!</span>
-        <span>Archive</span>
-      </Link>
-
       <div className={styles.titleContainer}>
         <h1 className={styles.title}>{slug.title}</h1>
         <div className={styles.date}>
@@ -53,6 +42,17 @@ export default async function BrainSlug({ params }: { params: any }) {
       </div>
       <div className={styles.slugContent}>
         <MDXRemote source={slug.content} />
+      </div>
+      <div className={styles.btnContainer}>
+        {authId === userInfo && (
+          <div className={styles.btnContainer}>
+            <SlugEditBtn params={params} />
+            <SlugDeleteBtn params={params} />
+          </div>
+        )}
+        <Link href={"/brain"} className={styles.btnArchive}>
+          to Archive
+        </Link>
       </div>
     </div>
   );

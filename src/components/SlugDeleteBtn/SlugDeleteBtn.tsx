@@ -31,12 +31,13 @@ export default async function SlugDeleteBtn({ params }: paramsType) {
   return (
     <>
       {authId === userInfo && (
-        <form action={deleteSlug}>
-          <button className={styles.btnDelete} type="submit">
-            <span>Click!</span>
-            <span>Delete</span>
-          </button>
-        </form>
+        <div className={styles.container}>
+          <form action={deleteSlug}>
+            <button className={styles.btnDelete} type="submit">
+              Delete
+            </button>
+          </form>
+        </div>
       )}
     </>
   );

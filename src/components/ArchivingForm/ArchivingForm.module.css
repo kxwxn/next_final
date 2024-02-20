@@ -1,7 +1,8 @@
 .container {
   justify-content: center;
-  padding-top: 4rem;
-  padding-left: 4rem;
+  width: 100%;
+  align-items: center;
+  padding-top: 2.5rem;
 }
 .formContainer {
   display: flex;
@@ -24,5 +25,3 @@
   border: none;
   font-size: 0.875em;
 }
-
-

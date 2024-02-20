@@ -1,93 +1,86 @@
 "use client";
-
-import React, { useRef, useEffect } from "react";
+import styles from "./SoulPage.module.css";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import Link from "next/link";
-import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
-import { FontLoader } from "three/examples/jsm/loaders/FontLoader";
-import { gsap } from "gsap";
+import { white } from "kleur/colors";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 export default function SoulPage() {
-  const canvasRef = useRef<HTMLAnchorElement>(null);
+  const canvasRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    // RENDERER
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.shadowMap.enabled = true;
-    // renderer.setPixelRatio(window.devicePixelRatio);
-    canvasRef.current && canvasRef.current.appendChild(renderer.domElement);
-
     // SCENE
     const scene = new THREE.Scene();
 
+    // RENDERER
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true,
+      precision: "highp",
+    });
+    renderer.shadowMap.enabled = true;
+    renderer.setPixelRatio(window.devicePixelRatio);
+    canvasRef.current && canvasRef.current.appendChild(renderer.domElement);
+
     // CAMERA
     const camera = new THREE.PerspectiveCamera(
-      75,
+      45,
       window.innerWidth / window.innerHeight,
-      0.1,
-      10,
+      1,
+      1000,
     );
-    camera.position.z = 10;
+    camera.position.set(50, 50, 50);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
 
     // LIGHT
-    const ambientLight = new THREE.AmbientLight("white", 1);
-    scene.add(ambientLight);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(20, 20, 20);
+    scene.add(directionalLight);
+    const dlHelper = new THREE.DirectionalLightHelper(
+      directionalLight,
+      5,
+      "red",
+    );
+    scene.add(dlHelper);
 
-    // FONTLOADER OBJECT MESH ( Geometry & Material )
-    const loader = new FontLoader();
-    loader.load("/fonts/Jost_Regular.typeface.json", (font) => {
-      // GEOMETRY
-      const textGeo = new TextGeometry(title, {
-        font: font,
-        size: 3,
-        height: 1,
-      });
+    // OBJECT
+    const geo = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+    const material = new THREE.MeshStandardMaterial({ color: 0xffff00 });
+    const boxGeo = new THREE.Mesh(geo, material);
+    scene.add(boxGeo);
 
-      // ALIGN GRAVITY CENTRE === textGeo.center()
-      textGeo.computeBoundingBox();
-      textGeo.center();
+    // ORBIT CONTROLS
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.minDistance = 0.1;
+    controls.maxDistance = 1000;
+    controls.update();
 
-      // MATERIAL
-      const material = new THREE.MeshPhongMaterial({ color: "14946e" });
+    //RESPONSIVE WINDOW FUNCTION
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+    window.addEventListener("resize", onWindowResize);
 
-      // CUBE ( COMPLETE OBJECT made of MESH )
-      const text = new THREE.Mesh(textGeo, material);
-      scene.add(text);
-
-      // RAYCASTER
-      const raycaster = new THREE.Raycaster();
-      const onMouseMove = (e: { clientX: number; clientY: number }) => {
-        const coordinate: { x: number; y: number } = {
-          x: (e.clientX / renderer.domElement.clientWidth) * 2 - 1,
-          y: -(e.clientY / renderer.domElement.clientHeight) * 2 + 1,
-        };
-
-        // raycaster.setFromCamera(coordinate, camera);
-        const interseption = raycaster.intersectObjects(scene.children, true);
-
-        if (interseption.length > 0) {
-          console.log("in");
-        } else {
-          ("out");
-        }
-      };
-
-      renderer.domElement.addEventListener("mousemove", onMouseMove);
-
-      // ANIMATION
-      const animate = () => {
-        requestAnimationFrame(animate);
-        text.rotation.y += 0.001;
-        renderer.render(scene, camera);
-      };
-      animate();
-    });
-
+    // ANIMATION FUNCTION
+    const animate = () => {
+      requestAnimationFrame(animate);
+      boxGeo.rotation.y += 0.01;
+      boxGeo.rotation.x += 0.01;
+      renderer.render(scene, camera);
+    };
+    animate();
+    // CLEAN UP FUNCTION
     return () => {
       if (canvasRef.current) {
         canvasRef.current.removeChild(renderer.domElement);
       }
     };
   }, []);
-
-  return <Link ref={canvasRef} />;
+  return (
+    <div className={styles.container}>
+      <div ref={canvasRef} className={styles.content} />
+    </div>
+  );
 }
