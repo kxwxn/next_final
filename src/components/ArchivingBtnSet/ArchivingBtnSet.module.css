@@ -14,6 +14,7 @@
   font-size: medium;
   border: 0.1rem solid red;
   color: red;
+  cursor: pointer;
 }
 .btnDraft {
   width: 7rem;
@@ -23,6 +24,7 @@
   font-family: inherit;
   font-size: medium;
   border: 0.1rem solid black;
+  cursor: pointer;
 }
 .btnArchive {
   width: 7rem;
@@ -32,6 +34,7 @@
   font-family: inherit;
   font-size: medium;
   border: 0.1rem solid black;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 500px) {

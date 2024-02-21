@@ -29,3 +29,5 @@
 ###### 🔧 네번째 핵심 기능은 body 페이지에서 사용된 <img src="https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=three.js&logoColor=ffffff"/> 라이브러리 입니다. 3D 스캔이 된 어떤 한 사람의 집의 모습입니다.
 
 ###### 🔧 마지막 핵심 기능은 ear 페이지의 spotify 공유 페이지 입니다. <img src="https://img.shields.io/badge/Spotify-1DB954?style=flat-square&logo=spotify&logoColor=000000"/> open API 를 사용해서 사용자가 음악을 공유할수 있으며, 함께 글도 작성 할 수 있습니다. ( 향후 apple music도 지원 예정)
+
+###### 🔧 Soul 페이지는 현재 작업중에 있습니다.

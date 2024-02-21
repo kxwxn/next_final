@@ -9,6 +9,7 @@
   border: 0.1rem solid black;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .container:active {

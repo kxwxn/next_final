@@ -8,6 +8,7 @@ export async function POST(request: Request) {
   const { userId } = auth();
   let shouldRedirect = false;
   try {
+    console.log("edit works");
     const formData = await request.formData();
     const title = formData.get("title");
     const content = formData.get("content");
@@ -23,8 +24,7 @@ export async function POST(request: Request) {
             content: content,
           },
           $currentDate: {
-            // @ts-ignore
-            createdAt: new Timestamp(),
+            createdAt: { $type: "timestamp" },
           },
         },
       );
@@ -32,6 +32,7 @@ export async function POST(request: Request) {
     db.collection("brainDraft").deleteOne({ author: userId });
     shouldRedirect = true;
   } catch (err) {
+    console.log("error?!");
     console.error(err);
 
     return;
