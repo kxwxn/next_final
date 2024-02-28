@@ -33,7 +33,6 @@ export default function BodyThreeSpace() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     spaceRef.current && spaceRef.current.appendChild(renderer.domElement);
     renderer.render(scene, camera);
-
     // LIGHT
     const pointLight = new THREE.PointLight("white", 100);
     pointLight.position.set(5, 10, 5);

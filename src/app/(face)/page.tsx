@@ -5,6 +5,7 @@ import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/facemesh";
 import Webcam from "react-webcam";
 import { drawMesh } from "../../../utilities";
+import Loading from "@/app/(face)/loading";
 
 const Face = () => {
   const webcamRef: React.MutableRefObject<any> = useRef(null);
@@ -71,7 +72,7 @@ const Face = () => {
   return (
     <div className={styles.container}>
       {isLoading ? (
-        "LOADING..."
+        <Loading />
       ) : (
         <canvas
           className={styles.canvas}

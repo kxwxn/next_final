@@ -3,9 +3,10 @@ import { Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/navbar/Navbar";
 import Menu from "@/components/menu/page";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 import styles from "./layout.module.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import Loading from "@/app/(face)/loading";
 
 export const metadata: Metadata = {
   title: "n0wlk",
