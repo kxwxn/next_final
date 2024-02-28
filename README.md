@@ -1,5 +1,44 @@
 <div align="center">
 
+# 🫥Anonymous Social Website and Personal Blog Project🫥
+
+## Motivation and Introduction
+
+#### As I was considering platforms for writing a tech blog, I realized that I wanted a space not only for writing but also for archiving the emotional aspects, thoughts, and the moments spent with computers in life. Hence, I decided to create this simple space. Another reason is...
+
+
+#### I believe there's a demand for such a platform. For instance, platforms like Instagram and Facebook are good examples for storing photos, posts, and videos. However, they expose data to a large number of unspecified individuals, resulting in data accumulation and the creation of further mass consumption. Giant corporations manipulate economic growth and consumer desires through data. Moreover, this mass consumption leads to environmental pollution, exacerbating polarization. It's understood that this can cause social conflicts, instability, and ultimately hinder economic growth.
+
+#### While I acknowledge that our lives cannot easily escape from the culture of mass consumption, I wanted to provide a place where people can occasionally step away from it and share their emotions and thoughts with anonymous individuals.
+
+---
+
+## Skills
+
+<img src="https://img.shields.io/badge/Yarn-2c8ebb?style=flat-square&logo=yarn&logoColor=000000"/><img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=000000"/><img src="https://img.shields.io/badge/Styled-Components-DB7093?style=flat-square&logo=StyledComponents&logoColor=DB7093"/><img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=000000"/><img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js"/><img src="https://img.shields.io/badge/Clerk-6c47ff?style=flat-square&logo=Clerk"/><img src="https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=three.js&logoColor=ffffff"/><img src="https://img.shields.io/badge/tensorflow-FF6F00?style=flat-square&logo=tensorflow&logoColor=000000"/><img src="https://img.shields.io/badge/Spotify-1DB954?style=flat-square&logo=spotify&logoColor=000000"/>
+
+
+##### 🔧 The project is currently deployed on Vercel and is in operation. https://n0wlk.com
+
+#####🔧 Auth functionality is implemented using the <img src="https://img.shields.io/badge/Clerk-6c47ff?style=flat-square&logo=Clerk"/> library for maximum security.
+
+##### 🔧 The first core feature aims to represent oneself as one of the anonymous individuals on the landing page. To achieve this, the <img src="https://img.shields.io/badge/tensorflow-FF6F00?style=flat-square&logo=tensorflow&logoColor=000000"/> library is used to detect and mesh faces from the webcam feed.
+
+##### 🔧 The second core feature, on the eye page, displays photos that can be perceived visually. However, these photos consist solely of black-and-white images of individuals unknown to me, and this area is exclusively for my uploads. To optimize images, the <Image/> tag recommended by Next.js for image optimization is utilized.
+
+##### 🔧 The third core feature is the brain page, serving as a blog page for writing, organizing, and archiving thoughts. Anyone can upload, delete, and modify posts, and the data is stored in <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=000000"/>.
+
+##### 🔧 The fourth core feature utilizes the <img src="https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=three.js&logoColor=ffffff"/> library on the body page, presenting a 3D scan of a person's home.
+
+##### 🔧 The last core feature is the ear page, a Spotify sharing page. Users can share music using the <img src="https://img.shields.io/badge/Spotify-1DB954?style=flat-square&logo=spotify&logoColor=000000"/> open API and write accompanying text. (Support for Apple Music is planned for the future)
+
+##### 🔧 The Soul page is currently under development.
+
+
+
+
+---
+
 # 🫥익명 사회 웹사이트 및 개인 블로그 프로젝트🫥
 
 ## 작성 동기 및 소개
